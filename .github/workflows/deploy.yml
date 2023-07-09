@@ -41,7 +41,8 @@ jobs:
           npx next export
       - name: Add CNAME
         run: |
-          echo "mx-space.js.org" > out/CNAME
+          # echo "mx-space.js.org" > out/CNAME
+          echo "mx-docs-next.iucky.cn" > out/CNAME
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
