@@ -71,9 +71,13 @@ const config: DocsThemeConfig = {
   },
   docsRepositoryBase: 'https://github.com/mx-space/docs',
   footer: {
-    text: <span>
-      AGPLv3 {new Date().getFullYear()} © <a href="https://github.com/mx-space/core" target="_blank">Mix Space</a>.
-    </span>
+    text: (
+      <div className="flex w-full flex-col items-center sm:items-start">
+      <p className="text-xs">
+        © {new Date().getFullYear()} This project is licensed under AGPLv3 licensed. 2021 Innei
+      </p>
+    </div>
+    )
   },
   useNextSeoProps() {
     const { asPath } = useRouter()
