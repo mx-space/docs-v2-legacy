@@ -91,10 +91,12 @@ const config: DocsThemeConfig = {
     text: 'Edit this page on GitHub →'
   },
   banner: {
-    key: 'theme-shiro',
-    text: <a href="https://github.com/Innei/Shiro" target="_blank">
-      🎨 New Mix Space theme `Shiro` is released. Read more →
-    </a>,
+    // key: 'theme-shiro',
+    // text: <a href="https://github.com/Innei/Shiro" target="_blank">
+    //   🎨 New Mix Space theme `Shiro` is released. Read more →
+    // </a>,
+    key: 'wip',
+    text: <span>🔨 This site is still under construction. Please come back later.</span>,
   },
 }
 
