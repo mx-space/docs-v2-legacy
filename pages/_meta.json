@@ -1,0 +1,16 @@
+{
+  "index": {
+    "type": "page",
+    "title": "Mog",
+    "display": "hidden",
+    "theme": {
+      "layout": "raw"
+    }
+  },
+  "github": {
+    "title": "GitHub ↗",
+    "type": "page",
+    "href": "https://github.com/mogland/core",
+    "newWindow": true
+  }
+}

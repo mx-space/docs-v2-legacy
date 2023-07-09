@@ -1,0 +1,308 @@
+---
+title: Mix Space - An Alternative Personal Space.
+---
+
+import Link from "next/link";
+import cn from "clsx";
+import { useState } from "react";
+import Image from "next/image";
+import { motion } from "framer-motion";
+import { Features, Feature } from "@components/features";
+import styles from "./index.module.css";
+import docsCard from "../public/console.png";
+import docsCardDark from "../public/console-dark.png";
+
+<div className="home-content">
+  <div className="content-container">
+    <h1 className="headline">An Alternative <br className='sm:block hidden'/>Personal Space.</h1>
+    <p className="subtitle">一个替代个人空间的新方式<br className='sm:block hidden'/></p>
+    <p className="subtitle">
+      <Link className={styles.cta} href="/docs">5 分钟拥有自己的 Mix Space <span>→</span></Link>
+    </p>
+  </div>
+<style jsx>{`
+  .content-container {
+    max-width: 90rem;
+    padding-left: max(env(safe-area-inset-left), 1.5rem);
+    padding-right: max(env(safe-area-inset-right), 1.5rem);
+    margin: 0 auto;
+  }
+  .features-container {
+    margin: 8rem 0 0;
+    padding: 4rem 0;
+    background-color: #f3f4f6;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  .features-container .content-container {
+    margin-top: -8rem;
+  }
+  :global(.dark) .features-container {
+    background-color: #000;
+    border-bottom: 1px solid rgb(38, 38, 38);
+  }
+  .headline {
+    display: inline-block;
+    font-size: 3.125rem;
+    font-size: min(4.375rem, max(8vw, 2.5rem));
+    font-weight: 700;
+    font-feature-settings: initial;
+    letter-spacing: -0.12rem;
+    margin-left: -0.2rem;
+    margin-top: 3.4rem;
+    line-height: 1.1;
+    background-image: linear-gradient(146deg, #000, #757a7d);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  :global(.dark) .headline {
+    background-image: linear-gradient(146deg, #fff, #757a7d);
+  }
+  .subtitle {
+    font-size: 1.3rem;
+    font-size: min(1.3rem, max(3.5vw, 1.2rem));
+    font-feature-settings: initial;
+    line-height: 1.6;
+  }
+  .nextjs-link {
+    color: currentColor;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  :global(#docs-card) {
+    color: #fff;
+    text-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
+  }
+  :global(#docs-card img) {
+    object-fit: cover;
+    object-position: left;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    height: 100%;
+    z-index: 0;
+    user-select: none;
+    pointer-events: none;
+  }
+  :global(#docs-card img:nth-child(2)) {
+    display: none;
+  }
+  :global(.dark #docs-card img:nth-child(2)) {
+    display: initial;
+  }
+  :global(.dark #docs-card img:nth-child(1)) {
+    display: none;
+  }
+  :global(.feat-darkmode) {
+    min-height: 300px;
+  }
+  :global(.feat-darkmode h3) {
+    font-size: 48px;
+  }
+  :global(#search-card) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  :global(#search-card p) {
+    max-width: 320px;
+  }
+  :global(#search-card video) {
+    position: absolute;
+    right: 0;
+    top: 24px;
+    height: 430px;
+    pointer-events: none;
+    max-width: 60%;
+  }
+  :global(#fs-card) {
+    min-height: 240px;
+  }
+  :global(#fs-card h3) {
+    text-align: left;
+    width: min(300px, 41%);
+    min-width: 155px;
+  }
+  :global(#a11y-card) {
+    background-image: url(/assets/high-contrast.png);
+    background-position: -160px 160px;
+  }
+  @media screen and (max-width: 1300px) {
+    :global(#a11y-card) {
+      background-image: linear-gradient(to bottom, white, transparent),
+        url(/assets/high-contrast.png);
+    }
+  }
+  @media screen and (max-width: 1200px) {
+    :global(#highlighting-card) {
+      aspect-ratio: auto;
+    }
+    :global(.feat-darkmode h3) {
+      font-size: 4vw;
+      font-size: min(48px, max(4vw, 30px));
+    }
+    :global(#search-card video) {
+      aspect-ratio: 787/623;
+      height: auto;
+    }
+    .headline {
+      letter-spacing: -0.08rem;
+    }
+  }
+  @media screen and (max-width: 1024px) {
+    :global(#docs-card) {
+      aspect-ratio: 135/86;
+    }
+    :global(#search-card) {
+      aspect-ratio: 8/3;
+    }
+    :global(#search-card h3) {
+      text-align: left;
+    }
+    :global(#highlighting-card) {
+      background-size: 136%;
+    }
+    :global(#a11y-card) {
+      background-image: url(/assets/high-contrast.png);
+      background-position: center 160px;
+    }
+  }
+  @media screen and (max-width: 768px) {
+    :global(#docs-card) {
+      min-height: 348px;
+      width: 100%;
+      aspect-ratio: auto;
+    }
+    :global(#docs-card img) {
+      object-position: -26px 0;
+      width: 250%;
+      max-width: initial;
+    }
+  }
+  @media screen and (max-width: 640px) {
+    :global(#search-card) {
+      aspect-ratio: 2.5/2;
+      justify-content: flex-start;
+      align-items: stretch;
+      min-height: 350px;
+    }
+    :global(#search-card h3) {
+      text-align: center;
+    }
+    :global(#search-card p) {
+      max-width: 100%;
+    }
+    :global(#search-card video) {
+      position: relative;
+      margin: 0.75em -1.75em 0;
+      max-width: calc(100% + 3.5em);
+    }
+    :global(.dark #search-card video) {
+      mix-blend-mode: lighten;
+    }
+  }
+`}</style>
+
+  <div className="features-container">
+    <div className="content-container">
+      <Features>
+        <Feature index={0} large centered id="docs-card" href="/docs">
+          <Image src={docsCard} alt="Background" loading="eager" />
+          <Image src={docsCardDark} alt="Background (Dark)" loading="eager" />
+          <h3>几分钟内创建<br className="show-on-mobile"/>强大现代的博客网站。</h3>
+        </Feature>
+        <Feature index={1} centered className="card-with-border" href="/docs/why">
+          <div className="h-full flex flex-col justify-between">
+            <h3>部署方式<br className="show-on-mobile" /><span style={{ fontWeight: 300 }}>多样</span>且<span style={{ fontWeight: 300 }}>快速</span>.</h3>
+            <div className='text-left mb-8'>
+            Mix Space 有多种部署方式，您可以选择最适合您的方式来部署您的 Mix Space。采用 Docker 部署，您可以在几分钟内部署您的博客，而不需要任何专业知识。使用预设脚本部署亦是如此。
+            </div>
+            <div>
+              <div className={styles.optimization}>
+                <div style={{ fontSize: '.9rem' }} className="leading-8">
+                  <code>{`bash <(curl -s https://fastly.jsdelivr.net/gh/mx-space/docker@master/install.sh)>`}</code>
+                </div>
+              </div>
+              <div className="flex justify-center text-neutral-400 my-2">
+                <span>/</span>
+              </div>
+              <div className={styles.optimization}>
+                <div style={{ fontSize: '.9rem' }} className="leading-8">
+                  <code>{`git clone https://github.com/mx-space/docker --depth=1 && cd docker && bash install.sh`}</code>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Feature>
+        <Feature index={2} centered className="feat-darkmode" style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}>
+          <motion.div
+            animate={{
+              backgroundPosition: ['0% 0%', '50% 40%', '50% 40%', '100% 100%'],
+              backgroundImage: [`radial-gradient(farthest-corner, #e2e5ea, #e2e5ea)`, 'radial-gradient(farthest-corner, #06080a, #e2e5ea)', 'radial-gradient(farthest-corner, #06080a, #e2e5ea)', 'radial-gradient(farthest-corner, #e2e5ea, #e2e5ea)'],
+            }}
+            transition={{
+              backgroundPosition: {
+                times: [0, .5, .5, 1],
+                type: 'tween',
+                repeat: Infinity,
+                duration: 10,
+                delay: 1
+              },
+              backgroundImage: {
+                times: [0, .2, .8, 1],
+                repeat: Infinity,
+                duration: 10,
+                delay: 1
+              },
+            }}
+            style={{
+              top: 0,
+              left: "0",
+              width: '100%',
+              height: '100%',
+              backgroundImage: `radial-gradient(farthest-corner, #06080a, #e2e5ea)`,
+              backgroundSize: '400% 400%',
+              backgroundRepeat: 'no-repeat',
+              position: 'absolute',
+            }}
+          />
+          <motion.h3
+            animate={{
+              color: ['#dae5ff', '#fff', '#fff', '#dae5ff'],
+            }}
+            transition={{
+              color: {
+                times: [.25, .35, .7, .8],
+                type: 'spring',
+                repeat: Infinity,
+                duration: 10,
+                delay: 1
+              },
+            }}
+            style={{
+              position: 'relative',
+              mixBlendMode: 'difference',
+            }}
+          >黑暗模式 <br/>原生适配.</motion.h3>
+        </Feature>
+        <Feature index={3} href="/services/render-service">
+          <h3>先进的<br className="show-on-mobile"/>文本语言渲染解决方案。</h3>
+          <div>
+            高性能、可靠、可扩展的<strong>文本宏函数</strong>和<strong>标记语言设置</strong>。在渲染过程中，Mog 会将大量的文本预处理工作交给后端服务，从而减轻前端的负担。
+          </div>
+        </Feature>
+        <Feature index={6}>
+          <h3>更多特性...</h3>
+          <p>可插拔主题 / 备份系统 / 独立的评论系统... <strong><i>更多新特性等待您的探索。</i></strong></p>
+          <p className="subtitle"><Link className="!no-underline" href="/docs">拥有你自己的 Mog →</Link></p>
+        </Feature>
+      </Features>
+    </div>
+  </div>
+</div>
