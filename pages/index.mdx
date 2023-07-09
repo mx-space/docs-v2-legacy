@@ -101,21 +101,13 @@ import docsCardDark from "../public/console-dark.png";
   :global(.feat-darkmode h3) {
     font-size: 48px;
   }
-  :global(#search-card) {
+  :global(#pty-card) {
     display: flex;
     flex-direction: column;
     justify-content: center;
   }
-  :global(#search-card p) {
+  :global(#pty-card p) {
     max-width: 320px;
-  }
-  :global(#search-card video) {
-    position: absolute;
-    right: 0;
-    top: 24px;
-    height: 430px;
-    pointer-events: none;
-    max-width: 60%;
   }
   :global(#serverless-card) {
     min-height: 240px;
@@ -143,7 +135,7 @@ import docsCardDark from "../public/console-dark.png";
       font-size: 4vw;
       font-size: min(48px, max(4vw, 30px));
     }
-    :global(#search-card video) {
+    :global(#pty-card img) {
       aspect-ratio: 787/623;
       height: auto;
     }
@@ -155,10 +147,10 @@ import docsCardDark from "../public/console-dark.png";
     :global(#docs-card) {
       aspect-ratio: 135/86;
     }
-    :global(#search-card) {
+    :global(#pty-card) {
       aspect-ratio: 8/3;
     }
-    :global(#search-card h3) {
+    :global(#pty-card h3) {
       text-align: left;
     }
     :global(#highlighting-card) {
@@ -182,24 +174,24 @@ import docsCardDark from "../public/console-dark.png";
     }
   }
   @media screen and (max-width: 640px) {
-    :global(#search-card) {
+    :global(#pty-card) {
       aspect-ratio: 2.5/2;
       justify-content: flex-start;
       align-items: stretch;
       min-height: 350px;
     }
-    :global(#search-card h3) {
+    :global(#pty-card h3) {
       text-align: center;
     }
-    :global(#search-card p) {
+    :global(#pty-card p) {
       max-width: 100%;
     }
-    :global(#search-card video) {
+    :global(#pty-card img) {
       position: relative;
       margin: 0.75em -1.75em 0;
       max-width: calc(100% + 3.5em);
     }
-    :global(.dark #search-card video) {
+    :global(.dark #pty-card img) {
       mix-blend-mode: lighten;
     }
   }
@@ -291,7 +283,7 @@ import docsCardDark from "../public/console-dark.png";
             }}
           >全平台<br/>黑暗模式</motion.h3>
         </Feature>
-        <Feature index={3} large id="search-card" href="/docs">
+        <Feature index={3} large id="pty-card" href="/docs">
           <div style={{ zIndex: 2}}>
             <h3>PTY 支持, <br/>在浏览器中使用终端。</h3>
             <p>Mix Space 支持在浏览器中使用终端，您可以在后台使用终端来管理您的 Mix Space。</p>
