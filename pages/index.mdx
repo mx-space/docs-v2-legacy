@@ -102,30 +102,20 @@ import docsCardDark from "../public/console-dark.png";
     font-size: 48px;
   }
   :global(#macros-card) {
-    min-height: 300px;
-    background-image: linear-gradient(to top, transparent, #fff 50%), url(/macros.png);
-    background-size: 634px;
-    background-position: -6px calc(100% + 30px);
-    background-repeat: no-repeat;
-  }
-  :global(.dark #macros-card) {
-    background-image: linear-gradient(to top, transparent, #202020 50%), url(/macros-dark.png);
-  }
-  :global(#pty-card) {
     display: flex;
     flex-direction: column;
     justify-content: center;
   }
-  :global(#pty-card p) {
+  :global(#macros-card p) {
     max-width: 320px;
   }
-  :global(#pty-card img:nth-child(2)) {
+  :global(#macros-card img:nth-child(2)) {
     display: none;
   }
-  :global(.dark #pty-card img:nth-child(2)) {
+  :global(.dark #macros-card img:nth-child(2)) {
     display: initial;
   }
-  :global(.dark #pty-card img:nth-child(1)) {
+  :global(.dark #macros-card img:nth-child(1)) {
     display: none;
   }
   :global(#serverless-card) {
@@ -147,14 +137,11 @@ import docsCardDark from "../public/console-dark.png";
     }
   }
   @media screen and (max-width: 1200px) {
-    :global(#macros-card) {
-      aspect-ratio: auto;
-    }
     :global(.feat-darkmode h3) {
       font-size: 4vw;
       font-size: min(48px, max(4vw, 30px));
     }
-    :global(#pty-card img) {
+    :global(#macros-card img) {
       aspect-ratio: 787/623;
       height: auto;
     }
@@ -166,14 +153,11 @@ import docsCardDark from "../public/console-dark.png";
     :global(#docs-card) {
       aspect-ratio: 135/86;
     }
-    :global(#pty-card) {
+    :global(#macros-card) {
       aspect-ratio: 8/3;
     }
-    :global(#pty-card h3) {
+    :global(#macros-card h3) {
       text-align: left;
-    }
-    :global(#macros-card) {
-      background-size: 136%;
     }
     :global(#a11y-card) {
       background-image: url(/assets/high-contrast.png);
@@ -193,24 +177,24 @@ import docsCardDark from "../public/console-dark.png";
     }
   }
   @media screen and (max-width: 640px) {
-    :global(#pty-card) {
+    :global(#macros-card) {
       aspect-ratio: 2.5/2;
       justify-content: flex-start;
       align-items: stretch;
       min-height: 350px;
     }
-    :global(#pty-card h3) {
+    :global(#macros-card h3) {
       text-align: center;
     }
-    :global(#pty-card p) {
+    :global(#macros-card p) {
       max-width: 100%;
     }
-    :global(#pty-card img) {
+    :global(#macros-card img) {
       position: relative;
       margin: 0.75em -1.75em 0;
       max-width: calc(100% + 3.5em);
     }
-    :global(.dark #pty-card img) {
+    :global(.dark #macros-card img) {
       mix-blend-mode: lighten;
     }
   }
@@ -245,12 +229,6 @@ import docsCardDark from "../public/console-dark.png";
                 </div>
               </div>
             </div>
-          </div>
-        </Feature>
-        <Feature index={3} id="macros-card" href="/docs">
-          <div style={{ zIndex: 2}}>
-            <h3>自定义 MD 语法支持, <br/>丰富您的内容。</h3>
-            <p>Mix Space 支持自定义 Markdown 内语法，您可以使用自定义语法来丰富您的内容。</p>
           </div>
         </Feature>
         <Feature index={2} centered className="feat-darkmode" style={{
@@ -308,12 +286,16 @@ import docsCardDark from "../public/console-dark.png";
             }}
           >全平台<br/>黑暗模式</motion.h3>
         </Feature>
-        <Feature index={4}>
-          <h3>强大的友链系统，<br />促进你与老友的联系。</h3>
-          <p>Mix Space 的友链系统强大且全面，在后台你可以检测你的老友是否还「健在」。<br /><i>通过、等待、过时、拒绝、封禁</i>，友链一切尽在掌握。</p>
+        <Feature index={3} large id="macros-card" href="/docs">
+          <div style={{ zIndex: 2}}>
+            <h3>Markdown + 自定义语法, <br/>丰富您的内容。</h3>
+            <p>Mix Space 支持自定义 Markdown 内语法，您可以使用自定义语法来丰富您的内容。</p>
+          </div>
+          <div className="absolute w-full h-full inset-0 hidden sm:block bg-[linear-gradient(to_right,white_250px,_transparent)] dark:bg-[linear-gradient(to_right,#202020_250px,_transparent)] z-[1]"/>
+          <img src="/macros.png" alt="Macros"  className="absolute w-full h-full inset-0 object-cover object-right-top z-0 dark:hidden"/>
+          <img src="/macros-dark.png" alt="Macros (Dark)"  className="absolute w-full h-full inset-0 object-cover object-right-top z-0 hidden dark:block"/>
         </Feature>
-        
-        <Feature index={5} large id="serverless-card" style={{
+        <Feature index={4} large id="serverless-card" style={{
           color: 'white',
           backgroundImage: 'url(/serverless.png), url(/gradient-bg.jpg)',
           backgroundSize: '140%, 180%',
@@ -341,7 +323,11 @@ import docsCardDark from "../public/console-dark.png";
           <h3>记录生活点滴</h3>
           <p>Mix Space 不仅是博客，更是记录生活点滴的个人空间。您可以在 Mix Space 分享您的多彩缤纷的生活。</p>
         </Feature>
-        <Feature index={8} large>
+        <Feature index={4}>
+          <h3>强大的友链系统，<br />促进你与老友的联系。</h3>
+          <p>Mix Space 的友链系统强大且全面，在后台你可以检测你的老友是否还「健在」<br /> 有了 Mix Space，你的友链一切尽在掌握。</p>
+        </Feature>
+        <Feature index={8} >
           <h3>更多特性...</h3>
           <p>文件管理 / WebSocket / 友链支持 / 计划任务 / 数据迁移... <strong><i>更多新特性等待您的探索。</i></strong></p>
           <p className="subtitle"><Link className="!no-underline" href="/docs">拥有你自己的 Mix Space →</Link></p>
