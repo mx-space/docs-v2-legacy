@@ -3,7 +3,8 @@ import { DocsThemeConfig, useConfig } from 'nextra-theme-docs'
 import { useRouter } from 'next/router'
 const logo = (
   <span>
-    {/* svg */}
+    <img src='/logo.png' />
+    Mix Space
     <style jsx>{`
       span {
         padding: 0.5rem 0.5rem 0.5rem 0;
@@ -15,6 +16,14 @@ const logo = (
         );
         mask-size: 400%;
         mask-position: 0%;
+        display: flex;
+        align-items: center;
+        font-size: 16px;
+        font-weight: 600;
+      }
+      img {
+        margin-right: 8px;
+        height: 24px;
       }
       span:hover {
         mask-position: 100%;
