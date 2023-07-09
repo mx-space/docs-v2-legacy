@@ -87,8 +87,8 @@ const config: DocsThemeConfig = {
     text: 'Edit this page on GitHub →'
   },
   banner: {
-    key: '2.0-refactoring',
-    text: <a href="/blog/mog-v2-refactor" target="_blank">
+    key: 'theme-shiro',
+    text: <a href="https://github.com/Innei/Shiro" target="_blank">
       🎨 New Mix Space theme `Shiro` is released. Read more →
     </a>,
   },
