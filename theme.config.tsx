@@ -3,7 +3,8 @@ import { DocsThemeConfig, useConfig } from 'nextra-theme-docs'
 import { useRouter } from 'next/router'
 const logo = (
   <span>
-    {/* svg */}
+    <img src='/logo.png' />
+    Mix Space
     <style jsx>{`
       span {
         padding: 0.5rem 0.5rem 0.5rem 0;
@@ -15,6 +16,14 @@ const logo = (
         );
         mask-size: 400%;
         mask-position: 0%;
+        display: flex;
+        align-items: center;
+        font-size: 16px;
+        font-weight: 600;
+      }
+      img {
+        margin-right: 8px;
+        height: 24px;
       }
       span:hover {
         mask-position: 100%;
@@ -62,9 +71,13 @@ const config: DocsThemeConfig = {
   },
   docsRepositoryBase: 'https://github.com/mx-space/docs',
   footer: {
-    text: <span>
-      AGPLv3 {new Date().getFullYear()} © <a href="https://github.com/mx-space/core" target="_blank">Mix Space</a>.
-    </span>
+    text: (
+      <div className="flex w-full flex-col items-center sm:items-start">
+      <p className="text-xs">
+        © {new Date().getFullYear()} This project is licensed under AGPLv3 licensed. 2021 Innei
+      </p>
+    </div>
+    )
   },
   useNextSeoProps() {
     const { asPath } = useRouter()
@@ -78,10 +91,12 @@ const config: DocsThemeConfig = {
     text: 'Edit this page on GitHub →'
   },
   banner: {
-    key: '2.0-refactoring',
-    text: <a href="/blog/mog-v2-refactor" target="_blank">
-      🎨 New Mix Space theme `Shiro` is released. Read more →
-    </a>,
+    // key: 'theme-shiro',
+    // text: <a href="https://github.com/Innei/Shiro" target="_blank">
+    //   🎨 New Mix Space theme `Shiro` is released. Read more →
+    // </a>,
+    key: 'wip',
+    text: <span>🔨 This site is still under construction. Please come back later.</span>,
   },
 }
 

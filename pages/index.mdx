@@ -101,49 +101,47 @@ import docsCardDark from "../public/console-dark.png";
   :global(.feat-darkmode h3) {
     font-size: 48px;
   }
-  :global(#search-card) {
+  :global(#macros-card) {
     display: flex;
     flex-direction: column;
     justify-content: center;
   }
-  :global(#search-card p) {
+  :global(#macros-card p) {
     max-width: 320px;
   }
-  :global(#search-card video) {
-    position: absolute;
-    right: 0;
-    top: 24px;
-    height: 430px;
-    pointer-events: none;
-    max-width: 60%;
+  :global(#macros-card img:nth-child(2)) {
+    display: none;
   }
-  :global(#fs-card) {
+  :global(.dark #macros-card img:nth-child(2)) {
+    display: initial;
+  }
+  :global(.dark #macros-card img:nth-child(1)) {
+    display: none;
+  }
+  :global(#serverless-card) {
     min-height: 240px;
   }
-  :global(#fs-card h3) {
+  :global(#serverless-card h3) {
     text-align: left;
     width: min(300px, 41%);
     min-width: 155px;
   }
-  :global(#a11y-card) {
+  :global(#analyze-card) {
     background-image: url(/assets/high-contrast.png);
-    background-position: -160px 160px;
+    background-position: -170px 160px;
   }
   @media screen and (max-width: 1300px) {
-    :global(#a11y-card) {
+    :global(#analyze-card) {
       background-image: linear-gradient(to bottom, white, transparent),
         url(/assets/high-contrast.png);
     }
   }
   @media screen and (max-width: 1200px) {
-    :global(#highlighting-card) {
-      aspect-ratio: auto;
-    }
     :global(.feat-darkmode h3) {
       font-size: 4vw;
       font-size: min(48px, max(4vw, 30px));
     }
-    :global(#search-card video) {
+    :global(#macros-card img) {
       aspect-ratio: 787/623;
       height: auto;
     }
@@ -155,14 +153,11 @@ import docsCardDark from "../public/console-dark.png";
     :global(#docs-card) {
       aspect-ratio: 135/86;
     }
-    :global(#search-card) {
+    :global(#macros-card) {
       aspect-ratio: 8/3;
     }
-    :global(#search-card h3) {
+    :global(#macros-card h3) {
       text-align: left;
-    }
-    :global(#highlighting-card) {
-      background-size: 136%;
     }
     :global(#a11y-card) {
       background-image: url(/assets/high-contrast.png);
@@ -182,24 +177,24 @@ import docsCardDark from "../public/console-dark.png";
     }
   }
   @media screen and (max-width: 640px) {
-    :global(#search-card) {
+    :global(#macros-card) {
       aspect-ratio: 2.5/2;
       justify-content: flex-start;
       align-items: stretch;
       min-height: 350px;
     }
-    :global(#search-card h3) {
+    :global(#macros-card h3) {
       text-align: center;
     }
-    :global(#search-card p) {
+    :global(#macros-card p) {
       max-width: 100%;
     }
-    :global(#search-card video) {
+    :global(#macros-card img) {
       position: relative;
       margin: 0.75em -1.75em 0;
       max-width: calc(100% + 3.5em);
     }
-    :global(.dark #search-card video) {
+    :global(.dark #macros-card img) {
       mix-blend-mode: lighten;
     }
   }
@@ -211,11 +206,11 @@ import docsCardDark from "../public/console-dark.png";
         <Feature index={0} large centered id="docs-card" href="/docs">
           <Image src={docsCard} alt="Background" loading="eager" />
           <Image src={docsCardDark} alt="Background (Dark)" loading="eager" />
-          <h3>几分钟内创建<br className="show-on-mobile"/>强大现代的博客网站。</h3>
+          <h3>几分钟内创建<br className="show-on-mobile"/>强大的现代博客网站。</h3>
         </Feature>
-        <Feature index={1} centered className="card-with-border" href="/docs/why">
+        <Feature index={1} centered className="card-with-border" href="/docs">
           <div className="h-full flex flex-col justify-between">
-            <h3>部署方式<br className="show-on-mobile" /><span style={{ fontWeight: 300 }}>多样</span>且<span style={{ fontWeight: 300 }}>快速</span>.</h3>
+            <h3>部署<br className="show-on-mobile" /><span style={{ fontWeight: 300 }}>一行完成</span>.</h3>
             <div className='text-left mb-8'>
             Mix Space 有多种部署方式，您可以选择最适合您的方式来部署您的 Mix Space。采用 Docker 部署，您可以在几分钟内部署您的博客，而不需要任何专业知识。使用预设脚本部署亦是如此。
             </div>
@@ -289,18 +284,53 @@ import docsCardDark from "../public/console-dark.png";
               position: 'relative',
               mixBlendMode: 'difference',
             }}
-          >黑暗模式 <br/>原生适配.</motion.h3>
+          >全平台<br/>黑暗模式</motion.h3>
         </Feature>
-        <Feature index={3} href="/services/render-service">
-          <h3>先进的<br className="show-on-mobile"/>文本语言渲染解决方案。</h3>
-          <div>
-            高性能、可靠、可扩展的<strong>文本宏函数</strong>和<strong>标记语言设置</strong>。在渲染过程中，Mog 会将大量的文本预处理工作交给后端服务，从而减轻前端的负担。
+        <Feature index={3} large id="macros-card" href="/docs">
+          <div style={{ zIndex: 2}}>
+            <h3>Markdown + 自定义语法, <br/>丰富您的内容。</h3>
+            <p>Mix Space 支持自定义 Markdown 内语法，您可以使用自定义语法来丰富您的内容。</p>
           </div>
+          <div className="absolute w-full h-full inset-0 hidden sm:block bg-[linear-gradient(to_right,white_250px,_transparent)] dark:bg-[linear-gradient(to_right,#202020_250px,_transparent)] z-[1]"/>
+          <img src="/macros.png" alt="Macros"  className="absolute w-full h-full inset-0 object-cover object-right-top z-0 dark:hidden"/>
+          <img src="/macros-dark.png" alt="Macros (Dark)"  className="absolute w-full h-full inset-0 object-cover object-right-top z-0 hidden dark:block"/>
         </Feature>
-        <Feature index={6}>
+        <Feature index={4} large id="serverless-card" style={{
+          color: 'white',
+          backgroundImage: 'url(/serverless.png), url(/gradient-bg.jpg)',
+          backgroundSize: '140%, 180%',
+          backgroundPosition: '130px -8px, top',
+          backgroundRepeat: 'no-repeat',
+          textShadow: '0 1px 6px rgb(38 59 82 / 18%)',
+          aspectRatio: '1.765',
+        }} href="/docs">
+          <h3 style={{
+            marginTop: '-2rem',
+          }}>
+          无限扩展、无限可能，<br className="show-on-mobile" />实现歌单解析，追番列表等功能。
+          </h3>
+        </Feature>
+        <Feature index={6} id="analyze-card" className='card-with-border' style={{
+          backgroundSize: 720,
+          backgroundRepeat: 'no-repeat',
+          minHeight: 288,
+          backgroundImage: 'url(/analyze-dashboard.png)',
+        }}>
+          <h3>数据统计面板</h3>
+          <p>Mix Space 支持访客统计，<br className="show-on-mobile"/>您可以在后台查看您的 <b>网站访问量</b>，<b>访问来源</b>，<b>访问设备</b>等信息。</p>
+        </Feature>
+        <Feature index={7}>
+          <h3>记录生活点滴</h3>
+          <p>Mix Space 不仅是博客，更是记录生活点滴的个人空间。您可以在 Mix Space 分享您的多彩缤纷的生活。</p>
+        </Feature>
+        <Feature index={4}>
+          <h3>强大的友链系统，<br />促进你与老友的联系。</h3>
+          <p>Mix Space 的友链系统强大且全面，在后台你可以检测你的老友是否还「健在」<br /> 有了 Mix Space，你的友链一切尽在掌握。</p>
+        </Feature>
+        <Feature index={8} >
           <h3>更多特性...</h3>
-          <p>可插拔主题 / 备份系统 / 独立的评论系统... <strong><i>更多新特性等待您的探索。</i></strong></p>
-          <p className="subtitle"><Link className="!no-underline" href="/docs">拥有你自己的 Mog →</Link></p>
+          <p>文件管理 / WebSocket / 友链支持 / 计划任务 / 数据迁移... <strong><i>更多新特性等待您的探索。</i></strong></p>
+          <p className="subtitle"><Link className="!no-underline" href="/docs">拥有你自己的 Mix Space →</Link></p>
         </Feature>
       </Features>
     </div>
