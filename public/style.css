@@ -1,0 +1,87 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-feature-settings: 'rlig' 1, 'calt' 1;
+}
+
+body {
+  background: linear-gradient(180deg, hsla(0, 0%, 100%, 0) 0, #fff 300px), fixed 0 0 /20px 20px radial-gradient(#d1d1d1 1px, transparent 0), fixed 10px 10px /20px 20px radial-gradient(#d1d1d1 1px, transparent 0);
+}
+
+.dark body {
+  background: linear-gradient(180deg, transparent 0, #111 300px), fixed 0 0 /20px 20px radial-gradient(#313131 1px, transparent 0), fixed 10px 10px /20px 20px radial-gradient(#313131 1px, transparent 0);
+}
+
+.home-content p {
+  margin-top: 1.5em;
+  line-height: 1.75em;
+}
+
+.home-content a {
+  --tw-ring-color: hsl(var(--nextra-primary-hue) 100% 50%/0.3);
+  --tw-text-opacity: 1;
+  text-underline-position: under;
+  text-decoration-line: underline;
+  text-decoration-thickness: from-font;
+  color: hsl(var(--nextra-primary-hue) 100% 50% / var(--tw-text-opacity));
+}
+
+figcaption {
+  font-size: 0.85rem;
+  line-height: 1.5rem;
+  display: block;
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+code.text-\[\.9em\] {
+  font-size: 14px;
+}
+
+@media screen and (max-width: 1200px) {
+  .home-content .hide-medium {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .home-content p {
+    font-size: 0.9rem;
+  }
+
+  .home-content .hide-small {
+    display: none;
+  }
+}
+
+del,
+del * {
+  color: #bbbbbb !important;
+}
+
+.dark del,
+.dark del * {
+  color: #555555 !important;
+}
+
+li>ul,
+li>ol {
+  margin-top: 0 !important;
+}
+
+li>ul>li::marker,
+li>ol>li::marker {
+  color: #bbbbbb;
+}
+
+.dark linearGradient[id^="linearGradient"] stop {
+  --tw-text-opacity: 1;
+  stop-color: rgba(241, 245, 249, var(--tw-text-opacity));
+}
+
+.dark #\39 b53a386-521a-4bce-b172-6530fb4038b7 {
+  --tw-text-opacity: 1;
+  fill: rgba(241, 245, 249, var(--tw-text-opacity));
+}

@@ -1,0 +1,23 @@
+{
+  "labels": ["dependencies"],
+  "extends": [
+    "config:base",
+    ":automergePatch",
+    ":automergeTypes",
+    ":automergeTesters",
+    ":automergeLinters",
+    ":rebaseStalePrs"
+  ],
+  "packageRules": [
+    {
+      "updateTypes": [
+        "major"
+      ],
+      "labels": [
+        "UPDATE-MAJOR",
+        "dependencies"
+      ]
+    }
+  ],
+  "enabled": true
+}
