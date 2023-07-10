@@ -24,7 +24,7 @@ export default function Video({ src }) {
     observer.observe(videoRef.current);
 
     return () => {
-      observer.unobserve(videoRef.current);
+      videoRef.current && observer.unobserve(videoRef.current);
     };
   }, [src]);
 
