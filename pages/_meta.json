@@ -8,19 +8,19 @@
     }
   },
   "docs": {
-    "title": "文档",
-    "type": "page"
-  },
-  "help": {
-    "title": "帮助",
-    "type": "page"
+    "type": "page",
+    "title": "部署文档"
   },
   "usage": {
-    "title": "使用",
-    "type": "page"
+    "type": "page",
+    "title": "使用指南"
+  },
+  "themes": {
+    "type": "page",
+    "title": "前端主题"
   },
   "development": {
-    "title": "开发",
+    "title": "系统开发",
     "type": "page"
   }
 }
