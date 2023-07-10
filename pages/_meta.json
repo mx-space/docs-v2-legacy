@@ -6,5 +6,17 @@
     "theme": {
       "layout": "raw"
     }
+  },
+  "docs": {
+    "title": "文档",
+    "type": "page"
+  },
+  "help": {
+    "title": "帮助",
+    "type": "page"
+  },
+  "development": {
+    "title": "开发",
+    "type": "page"
   }
 }
