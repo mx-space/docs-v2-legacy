@@ -1,3 +1,17 @@
 {
-  "index": "引言"
+  "-- basic": {
+    "type": "separator",
+    "title": "基础"
+  },
+  "index": "引言",
+  "-- advanced": {
+    "type": "separator",
+    "title": "进阶"
+  },
+  "advanced": "进阶安装",
+  "-- help": {
+    "type": "separator",
+    "title": "帮助"
+  },
+  "help": "使用帮助"
 }
