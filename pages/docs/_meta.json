@@ -4,11 +4,14 @@
     "title": "基础"
   },
   "index": "引言",
+  "features": "主要功能",
   "-- advanced": {
     "type": "separator",
-    "title": "进阶"
+    "title": "部署"
   },
-  "advanced": "进阶安装",
+  "docker": "Docker 部署",
+  "scripts": "预设脚本部署",
+  "advanced": "进阶部署",
   "-- help": {
     "type": "separator",
     "title": "帮助"
