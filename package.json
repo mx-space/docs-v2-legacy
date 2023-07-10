@@ -21,6 +21,7 @@
     "@vercel/og": "^0.5.8",
     "autoprefixer": "^10.4.14",
     "clsx": "^1.2.1",
+    "copy-to-clipboard": "^3.3.3",
     "framer-motion": "^10.12.18",
     "next": "^13.4.9",
     "nextra": "latest",

@@ -1,0 +1,11 @@
+{
+  "index": {
+    "title": "主题目录"
+  },
+  "shiro": {
+    "title": "Shiro 主题",
+    "theme": {
+      "layout": "default"
+    }
+  }
+}
