@@ -1,0 +1,50 @@
+---
+title: 前端主题
+---
+
+import { Card, Cards } from "nextra/components";
+
+{<h1 className="mt-10 mb-4 text-center text-[2.5rem] font-bold tracking-tight">前端主题</h1>}
+
+{<p className="mb-16 text-center text-lg text-gray-500 dark:text-gray-400">基于 Mix Space 后端 API 开发的前端主题 <br/> 点击查看主题部署指南</p>}
+
+<div className="m-8 mt-0">
+  <Cards>
+  <ThemeCard title="Shiro - @Innei" href="/themes/shiro">
+      <>
+        ![Shiro Preview](./shiro_preview.png)
+      </>
+    </ThemeCard>
+    <ThemeCard title="Kami - @Innei" href="/themes/kami">
+      <>
+        ![Kami Preview](./kami_preview.png)
+      </>
+    </ThemeCard>
+    <ThemeCard title="Yun - @Innei" href="/themes/yun">
+      <>
+        ![Yun Preview](./yun_preview.png)
+      </>
+    </ThemeCard>
+  </Cards>
+</div>
+
+
+export const ThemeCard = Object.assign(
+  // Copy card component and add default props
+  Card.bind(),
+  {
+    displayName: "ThemeCard",
+      defaultProps: {
+       image: true,
+       arrow: true,
+       target: "_self",
+     },
+   }
+);
+
+<style global jsx>{`
+ .nextra-cards img {
+   aspect-ratio: 12/6.3;
+     object-fit: cover;
+   }
+ `}</style>
