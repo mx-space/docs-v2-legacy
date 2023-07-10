@@ -10,6 +10,8 @@ export function ToGitHub({ repo }) {
         title={`${repo} - GitHub`}
         icon={<UilGithub />}
         children
+        // @ts-ignore
+        target="_blank"
       />
     </Cards>
   );

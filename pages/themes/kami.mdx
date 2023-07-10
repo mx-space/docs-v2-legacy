@@ -3,3 +3,56 @@
 import { ToGitHub } from '@components/ToGitHub';
 
 <ToGitHub repo="mx-space/kami" />
+
+import { Callout, Steps } from "nextra/components";
+
+<Callout type="warning">
+下一个代替项目将会是 Shiro，当它完成之时，我便不再投入任何精力到 Kami 中。迎接未来总需要舍弃一些东西，非常感谢大家三年来使用 Kami，不管你是谁，都需要对你说声谢谢。**—— Innei**
+</Callout>
+
+由于 Kami 主题将不再维护，此文档将不再更新，但是你仍然可以使用它。
+
+<Steps>
+### 克隆项目
+
+```bash
+git clone https://github.com/mx-space/kami.git --depth=1
+cd kami && git fetch --tags && git checkout $(git rev-list --tags --max-count=1)
+```
+
+### 安装依赖
+
+```bash
+git lfs fetch --all
+git lfs pull
+pnpm i
+```
+
+### 配置 ENV
+
+1. 复制 .env.example 为 .env
+2. 编辑 .env 文件，它看起来应该是这个样子的
+
+```env
+# API 地址
+NEXT_PUBLIC_API_URL=https://server.test.cn/api/v2
+# GATEWAY 地址
+NEXT_PUBLIC_GATEWAY_URL=https://server.test.cn
+#前端使用的配置项名字
+NEXT_PUBLIC_SNIPPET_NAME=kami
+# 如果使用 CDN, 修改产物前缀；一般留空
+ASSETPREFIX=
+```
+
+### 开始构建
+
+```bash
+pnpm build
+```
+
+### 启动前端
+
+```bash
+pnpm prod:pm2
+```
+</Steps>
