@@ -15,6 +15,10 @@
     "title": "帮助",
     "type": "page"
   },
+  "usage": {
+    "title": "使用",
+    "type": "page"
+  },
   "development": {
     "title": "开发",
     "type": "page"
