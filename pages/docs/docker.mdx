@@ -1,1 +1,64 @@
 # Docker 部署
+
+
+import { Callout, Steps } from "nextra/components";
+
+<Steps>
+### 安装 Docker
+
+如果你的服务器在国内，建议使用阿里云的镜像加速器，安装命令如下：
+
+```bash
+curl -fsSL https://get.docker.com | bash -s docker --mirror Aliyun
+```
+在国外，可以直接使用官方脚本安装：
+
+```bash
+curl -fsSL https://get.docker.com | bash -s docker
+```
+### 拉取配置文件
+
+```bash
+cd && mkdir -p mx-space/core && cd $_
+
+# 拉取docker-compose.yml 文件
+wget https://fastly.jsdelivr.net/gh/mx-space/core@master/docker-compose.yml
+
+# 拉取 Core 启动配置文件
+wget https://fastly.jsdelivr.net/gh/mx-space/core@master/.env.example -O .env
+```
+
+### 配置 Core 启动配置文件
+    
+```
+# THIS ENV FILE EXAMPLE ONLY FOR DOCKER COMPOSE
+# SEE https://docs.docker.com/compose/environment-variables/#the-env-file
+
+JWT_SECRET=7294c34e0b28ad28          #此处填写一个长度不小于 16 个字符，不大于 32 个字符的字符串
+ALLOWED_ORIGINS=test.cn,www.test.cn  #此处填写被允许的域名，通常是 kami 的域名，如果允许多个域名访问，用英文逗号，分隔
+
+#（可选）加密密钥，具体内容可参考 https://mx-space.js.org/feature/security.html
+# 若开启加密，则需注意密钥长度必须为 64 位，不然会在初始化时报错
+# 注意这是不可逆的，务必保存自己的秘钥。所以并不是非常推荐使用，除非你真的需要加密，
+ENCRYPT_ENABLE=false # 如果你确定要开启加密，将 false 改为 true
+ENCRYPT_KEY=593f62860255feb0a914534a43814b9809cc7534da7f5485cd2e3d3c8609acab
+
+```
+
+### 启动 Core
+
+```bash
+docker-compose up -d
+```
+
+### 完成
+
+恭喜你完成了 Core 部署，不过仅仅如此是不够的，你需要对 Core 进行初始化等等，尽情探索吧！
+
+</Steps>
+
+
+
+
+
+
