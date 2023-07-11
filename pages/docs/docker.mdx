@@ -6,7 +6,7 @@ import { Callout, Steps } from "nextra/components";
 <Steps>
 ### 安装 Docker
 
-如果你的服务器在国内，建议使用阿里云的镜像加速器，安装命令如下：
+如果你的服务器在国内，建议使用阿里云的镜像加速，安装命令如下：
 
 ```bash
 curl -fsSL https://get.docker.com | bash -s docker --mirror Aliyun
@@ -16,6 +16,15 @@ curl -fsSL https://get.docker.com | bash -s docker --mirror Aliyun
 ```bash
 curl -fsSL https://get.docker.com | bash -s docker
 ```
+
+均已经安装好 Docker 和 Docker-Compose，可以通过以下命令查看版本：
+
+```bash
+docker -v
+docker compose -v
+```
+
+
 ### 拉取配置文件
 
 ```bash
