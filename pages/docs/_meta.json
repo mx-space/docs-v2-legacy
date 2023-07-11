@@ -7,5 +7,6 @@
   },
   "docker": "Docker 部署",
   "scripts": "预设脚本部署",
-  "advanced": "进阶部署"
+  "advanced": "进阶部署",
+  "community": "社区分享"
 }
