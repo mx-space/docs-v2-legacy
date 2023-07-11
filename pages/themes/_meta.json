@@ -1,0 +1,23 @@
+{
+  "index": {
+    "title": "主题目录"
+  },
+  "shiro": {
+    "title": "部署 Shiro 主题",
+    "theme": {
+      "layout": "default"
+    }
+  },
+  "kami": {
+    "title": "部署 Kami 主题",
+    "theme": {
+      "layout": "default"
+    }
+  },
+  "yun": {
+    "title": "部署 Yun 主题",
+    "theme": {
+      "layout": "default"
+    }
+  }
+}

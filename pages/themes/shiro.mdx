@@ -1,0 +1,294 @@
+import { Card, Cards, Callout } from "nextra/components";
+
+# Shiro 主题
+
+import { ToGitHub } from '@components/ToGitHub';
+
+<ToGitHub repo="Innei/Shiro" />
+
+## Demo
+
+<Cards num={2}>
+  <Card arrow href="https://innei.in" title="静かな森" icon={<img src="https://innei.in/innei.svg" width={"25em"} />} />
+  <Card arrow href="https://blog.wibus.ren" title="可愛い松" icon={<img src="https://cdn.my-api.cn/user/w/asset-pic-picgo/2022-12-152kb_waifu-up3x-denoise3x.jpg" width={"25em"} />} />
+</Cards>
+
+## 前提要求
+
+- 你已安装 Mix Space 后端并且已启动
+- 你已注册 [Vercel](https://vercel.com/) 和 [GitHub](https://github.com/) 账号
+- 你已注册 [Clerk](https://clerk.com/) 账号
+
+## 安装
+
+import { Steps } from 'nextra/components'
+import Video from '@components/Video';
+
+<Steps>
+### 克隆仓库
+ 
+登陆 GitHub 账号，打开 [Innei/Shiro](https://github.com/Innei/Shiro)，点击右上角的 Fork 按钮，将仓库克隆到你的账号下。
+
+<Video src="https://pan.vinua.cn/f/73dt6/fork_shiro.mp4" />
+ 
+### 打开 Vercel 创建项目
+ 
+登陆 Vercel 账号，点击右上角的 New Project 按钮，选择 Import Git Repository，选择你刚刚 Fork 的仓库，点击 Import 按钮，即可进入到项目配置页面。
+
+<Video src="https://pan.vinua.cn/f/52ocj/shiro_create_new_project.mp4" />
+
+### 打开 Clerk 创建项目
+
+打开 [Clerk 仪表盘](https://dashboard.clerk.com/) 点击 Add application 按钮，填入你的博客名称，并配置信息，点击 Create application 按钮，即可完成配置。
+
+> 请你务必记住你的 Clerk 页面的公钥和私钥，稍后将会用到。
+
+<Video src="https://pan.vinua.cn/f/Mv1Ty/clerk_create_project.mp4" />
+
+### 配置环境变量
+
+<Video src="https://pan.vinua.cn/f/GqdSM/shiro_input_env.mp4" />
+
+在下方的配置表格中，填入你的环境变量，然后点击复制按钮，将环境变量复制到剪贴板中。
+
+<EnvVariableConfig 
+  variableNames={
+    [
+      {
+        key: 'NEXT_PUBLIC_API_URL',
+        name: "后端 API 地址"
+      }, 
+      {
+        key: 'NEXT_PUBLIC_GATEWAY_URL',
+        name: "后端网关地址"
+      }, 
+      {
+        key: 'NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY',
+        name: "Clerk 页面的公钥"
+      }, 
+      {
+        key: 'CLERK_SECRET_KEY',
+        name: "Clerk 页面的私钥"
+      }
+      ]
+  } 
+/>
+
+### 键入环境变量 & 开始部署
+
+在刚刚进入的 Vercel 项目配置页面中，点击 Environment Variables，然后键盘上的 Ctrl + V 将环境变量粘贴到输入框中，然后点击 Deploy 按钮，等待部署完成。
+
+<Video src="https://pan.vinua.cn/f/g3YfL/shiro_deploy.mp4" />
+
+### 配置 Vercel Storage
+
+<Video src="https://pan.vinua.cn/f/K9XIO/shiro_edge_config.mp4" />
+
+进入 Vercel 项目仪表盘，在上方菜单栏找到 Storage，点击 Connect Storage 按钮，选择 Edge Config，填入配置：
+
+<Callout>
+请注意，这份配置你需要自行修改成符合你的需求的配置。直接使用下面的配置可能会导致你的博客无法按照你的预期运行。
+</Callout>
+
+```json showLineNumbers
+{
+  "footer": {
+    "otherInfo": {
+      "date": "2020-{{now}}"
+    },
+    "linkSections": [
+      {
+        "name": "关于",
+        "links": [
+          {
+            "name": "关于本站",
+            "href": "/about-site"
+          },
+          {
+            "name": "关于我",
+            "href": "/about-me"
+          },
+          {
+            "name": "关于此项目",
+            "href": "https://github.com/innei/Shiro",
+            "external": true
+          }
+        ]
+      },
+      {
+        "name": "更多",
+        "links": [
+          {
+            "name": "时间线",
+            "href": "/timeline"
+          },
+          {
+            "name": "友链",
+            "href": "/friends"
+          }
+        ]
+      },
+      {
+        "name": "联系",
+        "links": [
+          {
+            "name": "写留言",
+            "href": "/message"
+          },
+          {
+            "name": "发邮件",
+            "href": "mailto:wibus@qq.com",
+            "external": true
+          },
+          {
+            "name": "GitHub",
+            "href": "https://github.com/wibus-wee",
+            "external": true
+          }
+        ]
+      }
+    ]
+  },
+  "config": {
+    "site": {
+      "favicon": "/wibus.jpg"
+    },
+    "hero": {
+      "title": {
+        "template": [
+          {
+            "type": "h1",
+            "text": "Hi, I'm ",
+            "class": "font-light text-4xl"
+          },
+          {
+            "type": "h1",
+            "text": "Innei",
+            "class": "font-medium mx-2 text-4xl"
+          },
+          {
+            "type": "h1",
+            "text": "👋。",
+            "class": "font-light text-4xl"
+          },
+          {
+            "type": "br"
+          },
+          {
+            "type": "h1",
+            "text": "A NodeJS Full Stack",
+            "class": "font-light text-4xl"
+          },
+          {
+            "type": "code",
+            "text": "<Developer/>",
+            "class": "font-medium mx-2 text-3xl rounded p-1 bg-gray-200 dark:bg-gray-800/0 hover:dark:bg-gray-800/100 bg-opacity-0 hover:bg-opacity-100 transition-background duration-200"
+          },
+          {
+            "type": "span",
+            "class": "inline-block w-[1px] h-8 -bottom-2 relative bg-gray-800/80 dark:bg-gray-200/80 opacity-0 group-hover:opacity-100 transition-opacity duration-200 group-hover:animation-blink"
+          }
+        ]
+      },
+      "description": "An independent developer coding with love."
+    },
+    "module": {
+      "donate": {
+        "enable": true,
+        "link": " https://afdian.net/@Innei ",
+        "qrcode": [
+          " https://cdn.jsdelivr.net/gh/Innei/img-bed@master/20191211132347.png ",
+          " https://cdn.innei.ren/bed/2023/0424213144.png "
+        ]
+      },
+      "bilibili": {
+        "liveId": 1434499
+      }
+    }
+  }
+}
+```
+
+点击 Save Item 按钮保存配置，然后回到仪表盘点击重新部署，等待部署完成。
+
+### 完成！
+
+至此，你已完成了 Shiro 主题的部署，你可以访问你的博客了。有关配置域名的教程，请参考 [Vercel 文档](https://vercel.com/docs/custom-domains)。
+
+</Steps>
+
+import { useState, useRef } from 'react';
+import copy from 'copy-to-clipboard';
+
+export function EnvVariableConfig({ variableNames }) {
+  const [values, setValues] = useState(Array(variableNames.length).fill(''));
+
+  const handleCopy = () => {
+    const envContent = variableNames.map((name, index) => `${name.key}=${values[index]}`).join('\n');
+    copy(envContent);
+  };
+
+  const handleChange = (index, value) => {
+    const newValues = [...values];
+    newValues[index] = value;
+    setValues(newValues);
+  };
+
+  return (
+    <div className="p-4 mt-2">
+      {variableNames.map((name, index) => (
+        <div key={`${name.key}`} className="flex items-center space-x-4 mb-4">
+          <input
+            type="text"
+            className="border rounded px-2 py-2 w-1/2 bg-transparent focus:outline-none focus:border-black hover:border-white-400 transition duration-300 font-[400] font-sans text-sm cursor-not-allowed"
+            value={name.name || name.key}
+            data-tip={name.key}
+            onMouseOver={(e) => {
+              e.target.style.color = 'transparent';
+              setTimeout(() => {
+                e.target.style.color = 'inherit';
+                e.target.value = e.target.dataset.tip;
+              }, 300);
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.color = 'transparent';
+              setTimeout(() => {
+                e.target.style.color = 'inherit';
+                e.target.value = name.name || name.key;
+              }, 300);
+            }}
+            disabled
+          />
+          <input
+            type="text"
+            // :focus-visible outline none
+            className="border rounded px-2 py-2 w-1/2 focus:outline-none focus:border-black hover:border-gray-400 transition duration-300 font-[400] font-sans text-sm" style={{ outline: "none", boxShadow: "none" }}
+            placeholder={`Enter value...`}
+            value={values[index]}
+            onChange={(e) => handleChange(index, e.target.value)}
+          />
+        </div>
+      ))}
+      <div className="flex items-center justify-between mb-4">
+        <h2 className="sr-only">环境变量配置</h2>
+        <button
+          type="button"
+          className="border bg-black w-full text-white px-4 py-2 rounded-lg text-sm transform transition-all duration-300 focus:outline-none hover:bg-gray-700"
+          onClick={handleCopy}
+        >
+          复制
+        </button>
+      </div>
+    </div>
+  );
+}
+
+
+<style global jsx>{`
+ .nextra-cards img {
+   border-radius: 50%;
+  }
+ .nextra-content pre {
+     max-height: 50vh;
+  }
+`}</style>

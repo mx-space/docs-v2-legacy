@@ -17,7 +17,11 @@
   },
   "themes": {
     "type": "page",
-    "title": "前端主题"
+    "title": "前端主题",
+    "href": "/themes",
+    "theme": {
+      "layout": "raw"
+    }
   },
   "development": {
     "title": "系统开发",
