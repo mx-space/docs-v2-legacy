@@ -1,6 +1,14 @@
 {
   "index": "使用指南",
+  "-- built-in": {
+    "type": "separator",
+    "title": "官方指南"
+  },
   "macros": "文本宏",
   "serverless": "云函数",
-  "xlog": "xLog 集成"
+  "xlog": "xLog 集成",
+  "-- community": {
+    "type": "separator",
+    "title": "社区使用指南"
+  }
 }
