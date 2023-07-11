@@ -7,10 +7,5 @@
   },
   "docker": "Docker 部署",
   "scripts": "预设脚本部署",
-  "advanced": "进阶部署",
-  "-- help": {
-    "type": "separator",
-    "title": "帮助"
-  },
-  "help": "使用帮助"
+  "advanced": "进阶部署"
 }
