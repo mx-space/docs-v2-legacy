@@ -1,8 +1,4 @@
 {
-  "-- basic": {
-    "type": "separator",
-    "title": "基础"
-  },
   "index": "引言",
   "features": "主要功能",
   "-- advanced": {

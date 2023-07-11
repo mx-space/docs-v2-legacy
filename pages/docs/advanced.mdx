@@ -1,1 +1,263 @@
 # 进阶部署
+
+import { Callout } from 'nextra/components';
+
+<Callout type="error">
+在您进行进阶部署前，我们给予最后的警告：如果你**不是开发者**，或者**不想折腾**，请不要选择**进阶部署**，因为它需要你具备一定的开发能力。
+
+由于自身技术原因导致的问题，我们将**不会提供任何技术支持**。情节严重者，我们将**永久拉黑**您的账号。
+</Callout>
+
+## 要求
+
+- 已安装 [Node.js](https://nodejs.org/zh-cn/) 16.0.0 或以上版本
+- 已安装 [Git](https://git-scm.com/downloads), [PNPM](https://pnpm.io/installation), [PM2](https://pm2.keymetrics.io/docs/usage/quick-start/)
+- 已安装 [MongoDB](https://www.mongodb.com/try/download/community), [Redis](https://redis.io/download) 并正常运行
+
+import { Steps } from 'nextra/components';
+
+<Steps>
+### 1. 克隆并安装
+
+```bash
+git clone https://github.com/mx-space/core.git --depth=1
+cd core
+pnpm i
+```
+
+### 2. 构建 & Bundle
+
+```bash
+pnpm build
+pnpm bundle
+```
+
+### 3. 配置 ecosystem.config.js
+
+<Configurator 
+  args={['--color', '--encrypt_enable']}
+  env={{
+    MX_ENCRYPT_KEY: {
+      type: 'password',
+      tip: '加密密钥，可选',
+      default: 'mx-space',
+    },
+    PORT: {
+      type: 'number',
+      tip: '服务端口，可选',
+      default: 3000,
+    },
+    ALLOWED_ORIGINS: {
+      type: 'text',
+      tip: '允许跨域的域名，多个域名用逗号分隔',
+      default: 'innei.ren,www.innei.ren',
+    },
+    JWT_SECRET: {
+      type: 'password',
+      tip: 'JWT 密钥，用于生成 JWT Token，可选',
+      default: 'asdoiasjdoiasjdioasjdioasjdio',
+    },
+  }}
+  template={`const { cpus } = require('os')
+const { execSync } = require('child_process')
+const nodePath = execSync(\`npm root --quiet -g\`, { encoding: 'utf-8' }).split(
+  '\n',
+)[0]
+const cpuLen = cpus().length
+module.exports = {
+  apps: [
+    {
+      name: 'mx-server',
+      script: 'out/index.js',
+      autorestart: true,
+      exec_mode: 'cluster',
+      watch: false,
+      instances: cpuLen,
+      max_memory_restart: '520M',
+      args: '',
+      env: {
+        NODE_ENV: 'production',
+        NODE_PATH: nodePath,
+        MX_ENCRYPT_KEY: process.env.MX_ENCRYPT_KEY,
+        PORT: process.env.PORT,
+      },
+    },
+  ],
+}  
+`}
+/>
+
+### 4. 启动
+
+1. 进入 `./apps/core/out`，创建一个 `ecosystem.config.js` 文件
+2. 将上方复制的内容黏贴进去，然后执行以下命令启动服务
+
+```bash
+pm2 start ecosystem.config.js
+```
+
+### 5. 反向代理 or ...
+
+剩下的就是你的事了，你可以使用 [Nginx](https://nginx.org/en/download.html) 或者 [Caddy](https://caddyserver.com/download) 等反向代理工具，也可以使用 [Cloudflare](https://www.cloudflare.com/) 等 CDN 服务。本文不再赘述。
+
+</Steps>
+
+
+
+
+import { useState, useEffect } from 'react';
+import copy from 'copy-to-clipboard';
+
+export const Configurator = ({ args, template, env }) => {
+  const [selectedArgs, setSelectedArgs] = useState([]);
+  const [envValues, setEnvValues] = useState(
+    Object.keys(env).map((key) => env[key].default)
+  );
+  const [nowTemplate, setNowTemplate] = useState(template);
+
+  const handleToggleArg = (arg) => {
+    if (selectedArgs.includes(arg)) {
+      setSelectedArgs(selectedArgs.filter((item) => item !== arg));
+    } else {
+      setSelectedArgs([...selectedArgs, arg]);
+    }
+  };
+
+  const handleChange = (index, value) => {
+    const updatedEnvValues = [...envValues];
+    updatedEnvValues[index] = value;
+    setEnvValues(updatedEnvValues);
+  };
+
+  const handleCopyToClipboard = () => {
+    copy(updatedEnvTemplate);
+  };
+
+  useEffect(() => {
+    const updatedTemplate = nowTemplate.replace(
+      /args:\s*'([^']*)'/,
+      `args: '${selectedArgs.join(' ')}'`
+    );
+    const updatedEnvTemplate = updatedTemplate.replace(
+      /env:\s*{([^}]*)}/,
+      `env: {
+        ${Object.keys(env)
+        .map((key, index) => `${key}: '${envValues[index]}'`)
+        .join(', \n        ')}
+      }`
+    );
+    setNowTemplate(updatedEnvTemplate);
+  }, [selectedArgs, envValues]);
+
+  return (
+    <div>
+      <div className="p-4 mt-2">
+
+      <div id="config" className="border rounded-lg overflow-hidden h-12 mb-4" style={{
+        height: "66.4px",
+        transition: 'height 0.5s ease-in-out',
+      }}>
+        <div className="flex cursor-pointer items-center justify-between bg-gray-100 p-4" onClick={() => {
+          const config = document.getElementById('config');
+          const h12Exist = config.classList.contains('h-12'); // 12 在那就是未展开, auto 就是展开
+          if (!h12Exist) {
+            const height = config.scrollHeight;
+            for (let i = 0; i < 11; i++) {
+              if (i === 10) {
+                setTimeout(() => {
+                  config.style.height = '66.4px';
+                }, i * 50);
+                break;
+              }
+              setTimeout(() => {
+                config.style.height = `${height - (height / 10) * i}px`;
+              }, i * 50);
+            }
+            config.classList.add('h-12');
+          } else { // 收起
+            const height = config.scrollHeight;
+            for (let i = 0; i < 11; i++) {
+              setTimeout(() => {
+                config.style.height = `${(height / 10) * i}px`;
+              }, i * 50);
+            }
+            config.classList.remove('h-12');
+          }
+        }}>
+          <h2 className="text-sm text-gray-500">
+            <span className="text-black">ecosystem.config.js</span> 配置文件 (点击展开)
+          </h2>
+          <button
+            type="button"
+            className="text-gray-500 focus:outline-none hover:text-black transition duration-300"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-4 w-4"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fillRule="evenodd"
+                d="M10 12a2 2 0 100-4 2 2 0 000 4z"
+                clipRule="evenodd"
+              />
+              <path
+                fillRule="evenodd"
+                d="M10 2a8 8 0 100 16 8 8 0 000-16zM2 10a8 8 0 1116 0 8 8 0 01-16 0z"
+                clipRule="evenodd"
+              />
+            </svg>
+          </button>
+        </div>
+        <div className="p-4">
+          <pre className="rounded-lg text-sm">
+            <code>{nowTemplate}</code>
+          </pre>
+        </div>
+      </div>
+          <h2 className="text-xl font-semibold mb-4">环境变量</h2>
+          {Object.keys(env).map((key, index) => (
+            <div key={key} className="flex items-center space-x-4 mb-4">
+            <input
+              type="text"
+              className="border rounded px-2 py-2 w-1/2 bg-transparent focus:outline-none focus:border-black hover:border-white-400 transition duration-300 font-[400] font-sans text-sm cursor-not-allowed"
+              value={`${key} (${env[key].tip})`}
+              disabled
+              />
+              <input
+              type={env[key].type}
+              className="border rounded px-2 py-2 w-1/2 focus:outline-none focus:border-black hover:border-gray-400 transition duration-300 font-[400] font-sans text-sm" style={{ outline: "none", boxShadow: "none" }}
+              placeholder={`Enter value...`}
+              value={envValues[Object.keys(env).indexOf(key)]}
+              onChange={(e) => handleChange(index, e.target.value)}
+            />
+            </div>
+          ))}
+        </div>
+      <div className="flex p-4">
+        <h2 className="text-xl font-semibold mb-4">配置选项</h2>
+        {args.map((arg) => (
+          <button
+            key={arg}
+            className={`border rounded px-2 py-2 mr-4 mb-4 focus:outline-none focus:border-black hover:border-gray-400 transition duration-300 font-[400] font-sans text-sm ${
+              selectedArgs.includes(arg) ? 'bg-gray-200' : 'bg-transparent'
+            }`}
+            onClick={() => handleToggleArg(arg)}
+          >
+            {arg}
+          </button>
+        ))}
+      </div>
+
+
+      <button
+          type="button"
+          className="border bg-black w-full text-white px-4 py-2 rounded-lg text-sm transform transition-all duration-300 focus:outline-none hover:bg-gray-700"
+          onClick={handleCopyToClipboard}
+        >
+          复制
+        </button>
+    </div>
+  );
+};

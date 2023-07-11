@@ -18,7 +18,6 @@
   "themes": {
     "type": "page",
     "title": "前端主题",
-    "href": "/themes",
     "theme": {
       "layout": "raw"
     }
