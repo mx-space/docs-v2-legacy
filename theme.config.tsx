@@ -39,6 +39,7 @@ const config: DocsThemeConfig = {
 
     return (
       <>
+        <link rel="dns-prefetch" href="//pan.vinua.cn" />
         <meta name="msapplication-TileColor" content="#fff" />
         <meta name="theme-color" content="#fff" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
