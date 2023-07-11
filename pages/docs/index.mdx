@@ -6,7 +6,7 @@ title: 引言
 
 **Mix Space** 是一个一款简洁而不简单的个人博客系统，它够快，够现代。你可以利用它构建一个属于自己的个人空间，记录生活，分享知识。
 
-在本章节，我们教你完成的是 **后端** 的安装，而 **前端** 的安装则需要你阅读 [前端主题文档](/themes)。
+在本章节，我们你将完成的是 **后端** 的安装，而 **前端** 的安装则需要你阅读 [前端主题文档](/themes)。
 
 <Callout type="info">
 为什么分开部署？请查看本页 [一些你需要清楚知道的事情](#一些你需要清楚知道的事情) 小节。
@@ -15,7 +15,7 @@ title: 引言
 ## 快速开始
 
 <Callout type="warning">
-如果你对 **Docker, Docker Compose, NodeJS, npm-script, git** 等技术不熟悉，建议先学习相关知识。文档中不会对这些技术进行详细介绍，且若由于不熟悉这些技术导致的问题，我们将**不会提供技术支持**。
+如果你对 **Docker, Docker Compose, npm-script, git** 等关键词不熟悉，你可以先在网络上查找它们稍微了解一下。文档中不会对这些技术进行详细介绍，若你不了解这些技术，你可能会在中途遇到一些问题哦。
 
 如果你不是开发者，或者不想折腾，请不要选择**进阶部署**，因为它需要你具备一定的开发能力。
 </Callout>
@@ -24,24 +24,23 @@ import { Card, Cards, Callout } from 'nextra/components';
 import { UimDocker } from '@components/Icons/Docker';
 import { UilPaintTool } from '@components/Icons/PaintTool';
 import { UimStar } from '@components/Icons/Star';
+import { FluentPeopleCommunity } from '@components/Icons/PeopleCommunity';
 
-<Cards num={3}>
+<Cards num={2}>
   <Card arrow title="Docker 部署 （推荐）" href="/docs/docker" icon={<UimDocker />} />
   <Card arrow title="预设脚本部署" href="/docs/scripts" icon={<UilPaintTool />} />
   <Card arrow title="进阶部署" href="/docs/advanced" icon={<UimStar />} />
+  <Card arrow title="社区部署教程" href="/docs/community" icon={<FluentPeopleCommunity />} />
 </Cards>
 
-还有更多部署方式吗？欢迎您向文档提交 [Pull Request](https://github.com/mx-space/docs/pulls) 以分享您的部署方式。按上方**后端部署文档**完成你的部署后，你可以通过继续部署 Mix Space **前端** *（为什么分开部署？请查看 [一些你需要清楚知道的事情](#一些你需要清楚知道的事情)）*
-
-下面是一些你可能需要的链接：
+还有更多部署方式吗？欢迎您向文档提交 [Pull Request](https://github.com/mx-space/docs/pulls) 以分享您的部署方式。按上方**后端部署文档**完成你的部署后，你可以通过下面的方式继续部署 Mix Space **前端** *（为什么分开部署？请查看 [一些你需要清楚知道的事情](#一些你需要清楚知道的事情)）*
 
 <Cards num={1}>
-  <Card arrow title="前端主题 の 部署文档" href="/themes" />
-  <Card arrow title="社区用户 の 部署教程" href="/docs/community" />
+  <Card arrow title="浏览前端主题" href="/themes" />
 </Cards>
 
 
-## 一些你需要清楚知道的事情
+## 一些你需要知道的事情
 
 ### 遇到报错怎么办？
 
