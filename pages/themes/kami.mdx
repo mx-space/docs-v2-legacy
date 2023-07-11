@@ -6,13 +6,25 @@ import { ToGitHub } from '@components/ToGitHub';
 
 import { Callout, Steps } from "nextra/components";
 
+
+> 下一个代替项目将会是 Shiro，当它完成之时，我便不再投入任何精力到 Kami 中。迎接未来总需要舍弃一些东西，非常感谢大家三年来使用 Kami，不管你是谁，都需要对你说声谢谢。**—— Innei**
+
+
+
 <Callout type="warning">
-下一个代替项目将会是 Shiro，当它完成之时，我便不再投入任何精力到 Kami 中。迎接未来总需要舍弃一些东西，非常感谢大家三年来使用 Kami，不管你是谁，都需要对你说声谢谢。**—— Innei**
+由于 Kami 主题将不再维护，该部分文档将会保持最小程度的更新；值得注意的是，使用 Kami 要求服务器的 Linux 内核版本不小于 4.19。
 </Callout>
 
-由于 Kami 主题将不再维护，此文档将不再更新，但是你仍然可以使用它。
 
 <Steps>
+### 检查内核版本
+
+```bash
+uname -r
+```
+如果你的内核版本小于 4.19，请升级内核。或者使用最新的 Ubuntu / Debian 。
+
+
 ### 克隆项目
 
 ```bash
