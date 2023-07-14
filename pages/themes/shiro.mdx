@@ -19,6 +19,10 @@ import { ToGitHub } from '@components/ToGitHub';
 - 你已注册 [Vercel](https://vercel.com/) 和 [GitHub](https://github.com/) 账号
 - 你已注册 [Clerk](https://clerk.com/) 账号
 
+<Callout type="warning">
+请注意，Shiro 主题的部署教程与初版有所不同，如果你已经部署过 Shiro 主题，请重新阅读本文档（尤其是填入配置文件环节，配置有所变化），并阅读最后一节[「移除 Edge Config」](#移除-edge-config)。
+</Callout>
+
 ## 安装
 
 import { Steps } from 'nextra/components'
@@ -45,48 +49,14 @@ import Video from '@components/Video';
 
 <Video src="https://pan.vinua.cn/f/Mv1Ty/clerk_create_project.mp4" />
 
-### 配置环境变量
+### 设置主题配置
 
-<Video src="https://pan.vinua.cn/f/GqdSM/shiro_input_env.mp4" />
+进入 Mix Space 后台，进入「配置与云函数」页面，点击右上角的新增按钮，在编辑页面中，填入以下设置：
 
-在下方的配置表格中，填入你的环境变量，然后点击复制按钮，将环境变量复制到剪贴板中。
-
-import { EnvVariableConfig } from '@components/EnvVariableConfig';
-
-<EnvVariableConfig 
-  variableNames={
-    [
-      {
-        key: 'NEXT_PUBLIC_API_URL',
-        name: "后端 API 地址"
-      }, 
-      {
-        key: 'NEXT_PUBLIC_GATEWAY_URL',
-        name: "后端网关地址"
-      }, 
-      {
-        key: 'NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY',
-        name: "Clerk 页面的公钥"
-      }, 
-      {
-        key: 'CLERK_SECRET_KEY',
-        name: "Clerk 页面的私钥"
-      }
-      ]
-  } 
-/>
-
-### 键入环境变量 & 开始部署
-
-在刚刚进入的 Vercel 项目配置页面中，点击 Environment Variables，然后键盘上的 Ctrl + V 将环境变量粘贴到输入框中，然后点击 Deploy 按钮，等待部署完成。
-
-<Video src="https://pan.vinua.cn/f/g3YfL/shiro_deploy.mp4" />
-
-### 配置 Vercel Storage
-
-<Video src="https://pan.vinua.cn/f/K9XIO/shiro_edge_config.mp4" />
-
-进入 Vercel 项目仪表盘，在上方菜单栏找到 Storage，点击 Connect Storage 按钮，选择 Edge Config，填入配置：
+- 名称：`shiro`
+- 引用：`theme`
+- 数据类型：`JSON`
+- 数据：（点击下方的按钮复制）
 
 <Callout>
 请注意，这份配置你需要自行修改成符合你的需求的配置。直接使用下面的配置可能会导致你的博客无法按照你的预期运行。
@@ -155,6 +125,10 @@ import { EnvVariableConfig } from '@components/EnvVariableConfig';
     "site": {
       "favicon": "/wibus.jpg"
     },
+    "custom": {
+      "scripts": null,
+      "styles": null
+    },
     "hero": {
       "title": {
         "template": [
@@ -211,7 +185,44 @@ import { EnvVariableConfig } from '@components/EnvVariableConfig';
 }
 ```
 
-点击 Save Item 按钮保存配置，然后回到仪表盘点击重新部署，等待部署完成。
+点击按钮保存配置，随后继续进行下面的步骤。
+
+### 配置环境变量
+
+<Video src="https://pan.vinua.cn/f/GqdSM/shiro_input_env.mp4" />
+
+在下方的配置表格中，填入你的环境变量，然后点击复制按钮，将环境变量复制到剪贴板中。
+
+import { EnvVariableConfig } from '@components/EnvVariableConfig';
+
+<EnvVariableConfig 
+  variableNames={
+    [
+      {
+        key: 'NEXT_PUBLIC_API_URL',
+        name: "后端 API 地址"
+      }, 
+      {
+        key: 'NEXT_PUBLIC_GATEWAY_URL',
+        name: "后端网关地址"
+      }, 
+      {
+        key: 'NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY',
+        name: "Clerk 页面的公钥"
+      }, 
+      {
+        key: 'CLERK_SECRET_KEY',
+        name: "Clerk 页面的私钥"
+      }
+      ]
+  } 
+/>
+
+### 键入环境变量 & 开始部署
+
+在刚刚进入的 Vercel 项目配置页面中，点击 Environment Variables，然后键盘上的 Ctrl + V 将环境变量粘贴到输入框中，然后点击 Deploy 按钮，等待部署完成。
+
+<Video src="https://pan.vinua.cn/f/g3YfL/shiro_deploy.mp4" />
 
 ### 完成！
 
@@ -219,6 +230,11 @@ import { EnvVariableConfig } from '@components/EnvVariableConfig';
 
 </Steps>
 
+## 移除 Edge Config
+
+在后续的 Shiro 更新中， Edge Config 将不再被使用。你可能需要移除 Edge Config，以防止不必要的资源使用。
+
+进入 Vercel 部署此项目的仪表盘，点击上方的 Storage，进入设置页面，点击左侧的 Projects，将链接的项目取消链接，接着点击左侧的 Settings，点击右侧的 Delete Edge Config 按钮，即可完成删除。
 
 <style global jsx>{`
  .nextra-cards img {

@@ -67,4 +67,122 @@ pnpm build
 ```bash
 pnpm prod:pm2
 ```
+
+### 反向代理
+
+以下配置文件以 Nginx 为例，若使用 Caddy 进行配置可参考 [Caddyfile 文件示例](https://github.com/mx-space/docker/blob/master/Caddyfile.example)进行相应修改。
+
+```nginx
+server {
+    ## 反向代理开始 
+    ## WebSocket 地址
+    location /socket.io {
+        proxy_set_header Upgrade $http_upgrade; 
+        proxy_set_header Connection "Upgrade"; 
+        proxy_buffering off; 
+        proxy_set_header Host $host; 
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
+        proxy_set_header X-Forwarded-Proto $scheme; 
+        proxy_pass http://127.0.0.1:2333/socket.io; 
+    }
+    ## API 地址
+    location /api/v2 {
+        proxy_pass http://127.0.0.1:2333/api/v2; 
+    }
+    ## 简读 render 地址
+    location /render {
+        proxy_pass http://127.0.0.1:2333/render; 
+    }
+    ## Kami 地址
+    location / {
+        proxy_pass http://127.0.0.1:2323; 
+    }
+    ## 后台地址
+    location /qaqdmin {
+        proxy_pass http://127.0.0.1:2333/qaqdmin;
+    }
+    ## 本地后台地址
+    location /proxy {
+        proxy_pass http://127.0.0.1:2333/proxy;
+    }
+    ## RSS 地址
+    location ~* \/(feed|sitemap|atom.xml) {
+        proxy_pass http://127.0.0.1:2333/$1; 
+    }
+    ## 反向代理结束
+}
+``` 
+
+完整示例如下
+
+```nginx
+server {
+    listen 80;
+    listen 443 ssl http2 ; 
+    ## 绑定域名 
+    server_name www.example.com; 
+    index index.html; 
+    proxy_set_header Host $host; 
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
+    proxy_set_header X-Forwarded-Host $server_name; 
+    proxy_set_header Upgrade $http_upgrade; 
+    proxy_set_header Connection "upgrade"; 
+    error_log /www/sites/www.example.com/log/error.log;
+    access_log /www/sites/www.example.com/log/access.log; 
+    location /socket.io {
+        proxy_set_header Upgrade $http_upgrade; 
+        proxy_set_header Connection "Upgrade"; 
+        proxy_set_header Host $host; 
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
+        proxy_set_header X-Forwarded-Proto $scheme; 
+        proxy_pass http://127.0.0.1:2333/socket.io; 
+    }
+    location /api/v2 {
+        proxy_pass http://127.0.0.1:2333/api/v2; 
+    }
+    location /render {
+        proxy_pass http://127.0.0.1:2333/render; 
+    }
+    location / {
+        proxy_pass http://127.0.0.1:2323; 
+    }
+    location /qaqdmin {
+        proxy_pass http://127.0.0.1:2333/qaqdmin;
+    }
+    location /proxy {
+        proxy_pass http://127.0.0.1:2333/proxy;
+    }
+    location ~* \/(feed|sitemap|atom.xml) {
+        proxy_pass http://127.0.0.1:2333/$1; 
+    }
+    ssl_certificate /www/sites/www.example.com/ssl/fullchain.pem; 
+    ssl_certificate_key /www/sites/www.example.com/ssl/privkey.pem; 
+    ssl_protocols TLSv1.3 TLSv1.2 TLSv1.1 TLSv1; 
+    ssl_ciphers 'ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES128-SHA256:ECDHE-ECDSA-AES128-SHA:ECDHE-ECDSA-AES256-SHA384:ECDHE-ECDSA-AES256-SHA:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-GCM-SHA384:DHE-RSA-AES128-GCM-SHA256:DHE-DSS-AES128-GCM-SHA256:kEDH+AESGCM:ECDHE-RSA-AES128-SHA256:ECDHE-RSA-AES128-SHA:ECDHE-RSA-AES256-SHA384:ECDHE-RSA-AES256-SHA:DHE-RSA-AES128-SHA256:DHE-RSA-AES128-SHA:DHE-DSS-AES128-SHA256:DHE-RSA-AES256-SHA256:DHE-DSS-AES256-SHA:DHE-RSA-AES256-SHA:AES128-GCM-SHA256:AES256-GCM-SHA384:AES128-SHA256:AES256-SHA256:AES128-SHA:AES256-SHA:AES:CAMELLIA:!aNULL:!eNULL:!EXPORT:!DES:!RC4:!3DES:!MD5:!PSK'; 
+    ssl_prefer_server_ciphers on; 
+    ssl_session_cache shared:SSL:10m; 
+    ssl_session_timeout 10m; 
+    error_page 497 https://$host$request_uri; 
+    limit_conn perserver 300; 
+    limit_conn perip 25; 
+    limit_rate 512k; 
+}
+```
+### 完成
+
+<Callout type="info">
+如果您按照文档示例配置 Nginx 反向代理，您要时刻记住，您的：
+- API 地址为 `https://www.example.com/api/v2`
+- Kami 地址为 `https://www.example.com` 
+- GateWay 为 `https://www.example.com`
+- 后台为 `https://www.example.com/qaqdmin`
+- 本地后台为 `https://www.example.com/proxy/qaqdmin`
+</Callout>
+
 </Steps>
+
+<style global jsx>{`
+ .nextra-content pre {
+     max-height: 50vh;
+  }
+`}</style>
