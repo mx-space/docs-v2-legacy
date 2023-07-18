@@ -13,7 +13,7 @@ import { ToGitHub } from '@components/ToGitHub';
 import { Callout, Steps } from 'nextra/components'
 
 <Callout type="info">
-非常感谢 Innei, Timochan, TNXG 的贡献，目前 ProcessReporter 已支持全平台！
+非常感谢 Innei, timochan, TNXG 的贡献，目前 ProcessReporter 已支持全平台！
 </Callout>
 
 <Steps>
@@ -148,7 +148,20 @@ export default async function handler(ctx: Context) {
 
 <ToGitHub repo="ttimochan/processforlinux#readme" />
 
-请参照项目的 README 进行配置运行。
+在仓库的 [Release](https://github.com/ttimochan/processforlinux/releases) 页面下载对应的二进制包，解压运行即可，具体请参照项目的 README 进行配置运行。
+
+安装完成后，新建 `.env.process` 文件，填入你的信息：
+  
+```env
+API_URL={你的API地址}/fn/ps/update
+API_KEY=填入你刚刚在云函数中设置的密钥
+REPORT_TIME=上报间隔（单位：秒）
+MEDIA_ENABLE=true # 是否开启媒体状态上报
+LOG_ENABLE=true # 是否打印日志
+```
+然后执行程序即可。如果一切正常，刷新一下你的博客你就可以在博客顶部看到你的动态了。
+
+如果有什么疑问，可以去阅读该项目的 [README](https://github.com/ttimochan/processforlinux#readme)
 
 <style global jsx>{`
  .nextra-content pre {
