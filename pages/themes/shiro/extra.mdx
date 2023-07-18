@@ -153,11 +153,16 @@ export default async function handler(ctx: Context) {
 安装完成后，新建 `.env.process` 文件，填入你的信息：
   
 ```env
+# 你的 key
+API_KEY=your_key
+# 你的云函数地址
 API_URL={你的API地址}/fn/ps/update
-API_KEY=填入你刚刚在云函数中设置的密钥
-REPORT_TIME=上报间隔（单位：秒）
-MEDIA_ENABLE=true # 是否开启媒体状态上报
-LOG_ENABLE=true # 是否打印日志
+# 上报时间间隔，单位为秒
+REPORT_TIME=30
+# 是否开启媒体状态上报
+MEDIA_ENABLE=true 
+# 是否打印日志
+LOG_ENABLE=true 
 ```
 然后执行程序即可。如果一切正常，刷新一下你的博客你就可以在博客顶部看到你的动态了。
 
