@@ -136,6 +136,27 @@ export default async function handler(ctx: Context) {
 
 ## ProcessReporter `Windows`
 
+Windows 版本的使用问题，请前往 [TNXG/ProcessReporterWinpy](https://github.com/TNXG/ProcessReporterWinpy#readme) 查看。
+
+### 使用 GUI 版本
+
+在 [Releases](https://github.com/TNXG/ProcessReporterWinpy/releases) 页面下载 `ProcessReporterWinpy_Launcher.exe`
+，配置好 `config.yml` 文件，然后运行 `ProcessReporterWinpy_Launcher.exe` 即可。
+
+`config.yml` 配置具体配置项以及说明请参考 [TNXG/ProcessReporterWinpy](https://github.com/TNXG/ProcessReporterWinpy#readme)。
+
+### 使用预编译的二进制文件
+
+在 [Releases](https://github.com/TNXG/ProcessReporterWinpy/releases) 页面下载 `ProcessReporterWinpy.exe`，配置好 `config.yml` 文件后，在终端运行即可，示例如下
+
+```powershell
+processforwinpy.exe --path "运行目录的路径"
+```
+
+`config.yml` 配置具体配置项以及说明请参考 [TNXG/ProcessReporterWinpy](https://github.com/TNXG/ProcessReporterWinpy#readme)。
+
+### 使用源代码
+
 下载代码后，修改 `config.yml` 文件，填入你的信息：
 
 - api_url：`{你的API地址}/fn/ps/update` （请将 `{你的API地址}` 替换为你的 API 地址，如：`https://api.example.com/api/v2`）
@@ -148,7 +169,7 @@ export default async function handler(ctx: Context) {
 
 <ToGitHub repo="ttimochan/processforlinux#readme" />
 
-在仓库的 [Release](https://github.com/ttimochan/processforlinux/releases) 页面下载对应的二进制包，解压运行即可，具体请参照项目的 README 进行配置运行。
+在仓库的 [Releases](https://github.com/ttimochan/processforlinux/releases) 页面下载对应的二进制包，解压运行即可，具体请参照项目的 README 进行配置运行。
 
 安装完成后，新建 `.env.process` 文件，填入你的信息：
   
