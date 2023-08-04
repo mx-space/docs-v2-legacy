@@ -18,26 +18,27 @@ import { Callout } from "nextra/components";
 
 ## 回滚
 
-<Callout>
+<Callout type="error" emoji="⚠️">
+该操作涉及修改数据库，请多备份几个工作日的 backup，数据无价请谨慎操作！
+
+一般情况下回滚只会导致 analyze 数据页丢失 IP & PV 的数据。
+</Callout>
+
+<Callout type="info">
 Linux 和 macOS 可直接上传备份包，并且无需修改包名一致即可回滚，以下操作仅针对使用 Windows 用户访问后端回滚的情况。
 </Callout>
 
 在后端中 其他 - 备份 中点击立即备份，将之前在电脑里的 `backup.zip` 上传到刚刚生成的备份目录里进行重命名替换。
 
-<Callout>
+
 例：假如刚刚生成的备份是 backup-2022-09-01_23:33:33.zip 将想进行回滚的备份包 backup-2022-01-14_05:14:19.zip 修改为刚刚生成的备份一样的名字：
 
 ```bash
 mv ~/mx-space/core/data/mx-space/backup/2022-01-14_05:14:19/backup-2022-01-14_05:14:19.zip backup-2022-09-01_23:33:33.zip
 ```
 
-（不要在 Windows 下重命名，Windows 不支持将英文冒号作为文件名的一部分）
-</Callout>
-
-<Callout type="error" emoji="⚠️">
-该操作涉及修改数据库，请多备份几个工作日的 backup，数据无价请谨慎操作！
-
-一般情况下回滚只会导致 analyze 数据页丢失 IP & PV 的数据。
+<Callout type="warning" emoji="⚠️">
+不要在 Windows 下重命名，Windows 不支持将英文冒号作为文件名的一部分
 </Callout>
 
 替换完成会提示“数据库有变动，将在 x 秒后重载页面”，重载先检查文章评论等有没有丢失。
