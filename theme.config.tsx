@@ -70,7 +70,7 @@ const config: DocsThemeConfig = {
   project: {
     link: 'https://github.com/mx-space/core',
   },
-  docsRepositoryBase: 'https://github.com/mx-space/docs',
+  docsRepositoryBase: 'https://github.com/mx-space/docs/blob/main/pages',
   footer: {
     text: (
       <div className="flex w-full flex-col items-center sm:items-start">
