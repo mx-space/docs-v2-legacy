@@ -1,0 +1,254 @@
+# 拓展内容
+
+import { Callout } from 'nextra/components';
+
+<Callout type="warning" emoji="⚠️">
+此部分内容是可选的，在正常情况，你不需要参考这部分内容。以下部分仅针对有特定需求的用户进行参考。
+</Callout>
+
+## 后台单独部署
+
+在正常情况下，你不需要单独部署后台，因为后台已经被打包到了后端中。
+
+如果你有以下需求：
+
+- 想使用其他域名作为后台地址
+- 想使用其他端口作为后台地址
+
+那么你可以选择单独部署后台，或者你可以参考 [反向代理配置](/themes/kami#反向代理)。
+
+### 拉取源文件
+
+```bash
+cd mx-space
+git clone https://github.com/mx-space/mx-admin.git --depth 1
+```
+
+### 修改配置文件
+
+移动到 `.env.production` 文件，去掉 `VITE_` 前缀的注释符号，然后修改为你的配置。
+
+例如：
+
+```txt
+VITE_APP_BASE_API=https://server.test.cn/api/v2
+VITE_APP_WEB_URL=https://www.test.cn
+VITE_APP_GATEWAY=https://server.test.cn
+# # VITE_APP_PUBLIC_URL=https://fastly.jsdelivr.net/gh/mx-space/admin-next@gh-pages/
+```
+
+其他可以定义的配置在文件 `/src/configs.ts` 中。
+
+### 构建
+
+<Callout type="warning" emoji="⚠️">
+构建 mx-admin 需要的内存至少为 2 Gib，如果你服务器内存不足，你可以在本地构建成功后，将产物上传到服务器。
+
+在 Windows 系统上，mx-admin 无法正常构建，你可以使用 WSL2 或者 Linux 系统。
+</Callout>
+
+```bash
+pnpm i
+pnpm build
+```
+
+### 部署产物
+
+构建生成的产物在 dist 目录下，你可以直接把它们移动到你准备好的后台网站的根目录下。
+
+假设你准备的后台网站域名是 `admin.test.cn`，
+
+网站根目录为 `/var/www/admin.test.cn/`，
+
+那么，你把 dist 目录下的所有文件移动到 `/var/www/admin.test.cn/` 目录下即可。
+
+### 修改后端配置
+
+编辑 Core 的 `.env` 文件，修改 `ALLOWED_ORIGINS` ，添加你的后台域名。
+
+示例域名为 `admin.test.cn` 。
+
+例如：
+
+```txt
+# THIS ENV FILE EXAMPLE ONLY FOR DOCKER COMPOSE
+# SEE https://docs.docker.com/compose/environment-variables/#the-env-file
+JWT_SECRET=7294c34e0b28ad28          #此处填写一个长度不小于 16 个字符，不大于 32 个字符的字符串
+ALLOWED_ORIGINS=test.cn,www.test.cn,admin.test.cn
+```
+
+然后重新启动 Core 即可：
+
+```bash
+docker compose up -d
+```
+
+## 对 Redis 配置
+
+如果你需要使用来自 (远端 / 非容器) 的 Redis 服务，你可以通过使用 `argv` 来动态传入对应的配置项。
+
+支持传入如下值：
+
+- `redis_host` Redis 服务地址，域名、IP 都可以
+- `redis_port` Redis 服务端口
+- `redis_password` Redis 服务密码
+
+在默认情况下，我们认为这样已经足够了。
+
+### 对于 Docker 部署
+
+编辑 `docker-compose.yml` 文件，变更 `command` 这项内容，添加你需要传入的值，以传入 `redis_host` 和 `redis_password` 为例，如下所示：
+
+```yaml
+version: '3.8'
+
+services:
+  app:
+    container_name: mx-server
+    image: innei/mx-server:latest
+    command: node index.js --redis_host=远端地址 --db_host=mongo --redis_password=redis?passwd --allowed_origins=${ALLOWED_ORIGINS} --jwt_secret=${JWT_SECRET} --color
+```
+
+然后重新创建容器即可生效：
+
+```bash
+docker compose up -d
+```
+
+### 对于源码部署
+
+针对这种部署方式，我们可以修改 `ecosystem.config.js` 在 12 行，也就是 `script` 这一项，添加你需要传入的值，如下所示：
+
+```diff
+const { cpus } = require('os')
+const { execSync } = require('child_process')
+const nodePath = execSync(`npm root --quiet -g`, { encoding: 'utf-8' }).split(
+  '\n',
+)[0]
+
+const cpuLen = cpus().length
+module.exports = {
+  apps: [
+    {
+      name: 'mx-server',
+-     script: 'out/index.js,
++     script: 'out/index.js --redis_host=远端地址 --redis_password=redis?passwd',
+      autorestart: true,
+      exec_mode: 'cluster',
+```
+
+当然，我们也可以修改源码，修改对应的配置项，这样就可以不用传入了。
+
+移动到 `/src/app.config.ts` 文件，在 47 行左右，修改对应的配置项：
+
+```diff
+export const REDIS = {
+-  host: argv.redis_host || '127.0.0.1',
+-  port: argv.redis_port || 6379,
+-  password: argv.redis_password || '',
++  host: argv.redis_host || '远端',
++  port: argv.redis_port || 6379,
++  password: argv.redis_password || 'redis?passwd',
+  ttl: null,
+  httpCacheTTL: 5,
+  max: 5,
+  disableApiCache:
+    (isDev || argv.disable_cache) && !process.env['ENABLE_CACHE_DEBUG'],
+}
+```
+
+当你修改完成，你需要重新构建，并重启服务：
+
+```bash
+pnpm bundle
+
+pnpm prod:pm2
+```
+
+## 对 MongoDB 配置
+
+如果你需要使用来自 (远端 / 非容器) 的 MongoDB 服务，你可以通过使用 `argv` 来动态传入对应的配置项。
+
+支持传入如下值：
+
+- `collection_name` 数据库集合名字
+- `db_host` MongoDB 服务地址，域名、IP 都可以
+- `db_port` MongoDB 服务端口
+- `db_user` MongoDB 服务用户名
+- `db_password` MongoDB 服务密码
+
+<Callout type="warning" emoji="⚠️">
+如果你需要使用密码登录，你不仅仅需要传入 password，还需要传入 user，建议你对数据库集合划分好用户权限
+</Callout>
+
+### 对于 Docker 部署
+
+编辑 `docker-compose.yml` 文件，变更 `command` 这项内容，添加你需要传入的值，以传入 `db_host` `db_user` 和 `db_password` 为例，如下所示：
+
+```yaml
+version: '3.8'
+
+services:
+  app:
+    container_name: mx-server
+    image: innei/mx-server:latest
+    command: node index.js --redis_host=redis --db_host=远端地址 --db_user=mongodb-test --db_password=db?passwd --allowed_origins=${ALLOWED_ORIGINS} --jwt_secret=${JWT_SECRET} --color
+```
+
+然后我们重启创建容器即可：
+
+```
+docker compose up -d
+```
+
+### 对于源码部署
+
+和 Redis 一样，我们可以修改 `ecosystem.config.js` 在 12 行，也就是 `script` 这一项，添加你需要传入的值，如下所示：
+
+```diff
+const { cpus } = require('os')
+const { execSync } = require('child_process')
+const nodePath = execSync(`npm root --quiet -g`, { encoding: 'utf-8' }).split(
+  '\n',
+)[0]
+
+const cpuLen = cpus().length
+module.exports = {
+  apps: [
+    {
+      name: 'mx-server',
++     script: 'out/index.js --db_host=远端地址 --db_user=mongodb-test --db_password=db?passwd',
+      autorestart: true,
+      exec_mode: 'cluster',
+```
+
+当然，我们也可以修改源码，修改对应的配置项，这样就可以不用传入了。
+
+移动到 `/src/app.config.ts` 文件，在 32 行左右，修改对应的配置项：
+
+```diff
+export const MONGO_DB = {
+  dbName: argv.collection_name || (DEMO_MODE ? 'mx-space_demo' : 'mx-space'),
+-  host: argv.db_host || '127.0.0.1',
+-  port: argv.db_port || 27017,
+-  user: argv.db_user || 'mx-space',
+-  password: argv.db_password || '',
++  host: argv.db_host || '远端',
++  port: argv.db_port || 27017,
++  user: argv.db_user || 'mongodb-test',
++  password: argv.db_password || 'db?passwd',
+  get uri() {
+    const userPassword =
+      this.user && this.password ? `${this.user}:${this.password}@` : ''
+    return `mongodb://${userPassword}${this.host}:${this.port}/${this.dbName}`
+  },
+}
+```
+
+当你修改完成，你需要重新构建，并重启服务：
+
+```bash
+pnpm bundle
+
+pnpm prod:pm2
+```
