@@ -9,6 +9,7 @@
   "xlog": "xLog 集成",
   "search": "Algolia Search",
   "backup": "备份与回滚",
+  "update": "更新 Mx-Space",
   "-- community": {
     "type": "separator",
     "title": "社区使用指南"

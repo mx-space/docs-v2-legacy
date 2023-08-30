@@ -1,0 +1,92 @@
+# 拓展内容
+
+import { Callout } from 'nextra/components';
+
+<Callout type="warning" emoji="⚠️">
+此部分内容是可选的，在正常情况，你不需要参考这部分内容。以下部分仅针对有特定需求的用户进行参考。
+</Callout>
+
+## 配置其他 Redis 服务
+
+如果你需要使用来自 (远端 / 非容器) 的 Redis 服务，你可以通过使用 `argv` 来动态传入对应的配置项。
+
+支持传入如下值：
+
+- `redis_host` Redis 服务地址，域名、IP 都可以
+- `redis_port` Redis 服务端口
+- `redis_password` Redis 服务密码
+
+在默认情况下，我们认为这样已经足够了。
+
+### 对于进阶部署
+
+针对这种部署方式，我们可以修改 `ecosystem.config.js` 在 12 行，也就是 `script` 这一项，添加你需要传入的值，如下所示：
+
+```diff
+const { cpus } = require('os')
+const { execSync } = require('child_process')
+const nodePath = execSync(`npm root --quiet -g`, { encoding: 'utf-8' }).split(
+  '\n',
+)[0]
+
+const cpuLen = cpus().length
+module.exports = {
+  apps: [
+    {
+      name: 'mx-server',
+-     script: 'out/index.js,
++     script: 'out/index.js --redis_host=远端地址 --redis_password=redis?passwd',
+      autorestart: true,
+      exec_mode: 'cluster',
+```
+
+当你修改完成，你需要重新构建，并重启服务：
+
+```bash
+pnpm bundle
+pnpm prod:pm2
+```
+
+## 配置其他 MongoDB 服务
+
+如果你需要使用来自 (远端 / 非容器) 的 MongoDB 服务，你可以通过使用 `argv` 来动态传入对应的配置项。
+
+支持传入如下值：
+
+- `collection_name` 数据库集合名字
+- `db_host` MongoDB 服务地址，域名、IP 都可以
+- `db_port` MongoDB 服务端口
+- `db_user` MongoDB 服务用户名
+- `db_password` MongoDB 服务密码
+
+<Callout type="warning" emoji="⚠️">
+如果你需要使用密码登录，你不仅仅需要传入 password，还需要传入 user，建议你对数据库集合划分好用户权限
+</Callout>
+
+### 对于进阶部署
+
+和 Redis 一样，我们可以修改 `ecosystem.config.js` 在 12 行，也就是 `script` 这一项，添加你需要传入的值，如下所示：
+
+```diff
+const { cpus } = require('os')
+const { execSync } = require('child_process')
+const nodePath = execSync(`npm root --quiet -g`, { encoding: 'utf-8' }).split(
+  '\n',
+)[0]
+
+const cpuLen = cpus().length
+module.exports = {
+  apps: [
+    {
+      name: 'mx-server',
++     script: 'out/index.js --db_host=远端地址 --db_user=mongodb-test --db_password=db?passwd',
+      autorestart: true,
+      exec_mode: 'cluster',
+```
+
+当你修改完成，你需要重新构建，并重启服务：
+
+```bash
+pnpm bundle
+pnpm prod:pm2
+```
