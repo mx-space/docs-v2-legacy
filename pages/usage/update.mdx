@@ -1,0 +1,78 @@
+# 更新 Mx-Space
+
+import { Callout } from "nextra/components";
+
+开头介绍就说过，Mx-Space 分为前端和后端两个部分，因此，更新的时候二者也需要分开更新。
+
+## Core 更新
+
+根据部署方式的不同，更新方式也有不同。
+
+### Docker 部署
+
+进入 core 所在文件夹，然后 `docker compose pull && docker compose up -d`
+
+### 进阶部署
+
+进入克隆 core 的文件夹，执行 `git pull origin master` 拉取新版本源码，随后正常进行 `pnpm i` -> `pnpm build` -> `pnpm bundle`。
+
+随后 进入 `./apps/core/out`，执行以下命令启动服务 `pm2 start ecosystem.config.js`
+
+## Shiro 更新
+
+按照文档的部署方法使用 Vercel 托管的话，只需要在自己 Fork 的项目上 Sync Fork 即可（如图）。如果自己有魔改某些内容的话不要点击 Discard Changes，会把自己的魔改搞没了。
+
+![](https://pan.vinua.cn/f/GRefM/0.png)
+
+## Kami 更新
+
+分为对 Kami 进行魔改和未魔改两种情况。
+
+### 未魔改
+
+<Callout emoji="💡">
+该方法适合于对 Kami 源代码没有做改动的用户。
+</Callout>
+
+直接在 `kami` 文件夹下执行 `git pull origin master`：
+
+```bash
+cd ~/mx-space/kami
+git pull origin master
+```
+
+安装依赖、构建、启动前端：
+
+```bash
+pnpm i
+pnpm build
+pm2 start
+```
+
+<Callout type="warning" emoji="⚠️">
+你应该理解的是，即便是你没有对 Kami 进行任何魔改，仍有可能出现代码不能自动合并的问题，对于这种情况，建议参考下面的已魔改部分完成升级。
+</Callout>
+
+### 已魔改
+
+<Callout emoji="💡">
+此方法适用于对前端魔改后的升级，我们认为你修改了 'kami/src' 里面的源代码，这样的话，容易出现合并冲突，建议手动替换。
+</Callout>
+
+将 `kami` 文件夹改为任意名字，例如修改为 `kami.d`，然后拉取 kami 前端仓库，更新到稳定版本：
+
+```bash
+cd ~/mx-space
+git clone https://github.com/mx-space/kami.git --depth=1
+cd kami && git fetch --tags && git checkout $(git rev-list --tags --max-count=1)
+```
+
+然后将更新前之前配置时修改过的文件，如在 `kami.d` 中的 `.env` 和 `public` 文件夹复制到 `kami`，将你的修改的部分依次修改替换完成。
+
+安装依赖、构建、启动前端：
+
+```bash
+pnpm i
+pnpm build
+pm2 start
+```
