@@ -8,6 +8,11 @@
   "docker": "Docker 部署",
   "scripts": "预设脚本部署",
   "advanced": "进阶部署",
-  "extra": "拓展内容",
-  "community": "社区分享"
+  "community": "社区分享",
+  "-- more": {
+    "type": "separator",
+    "title": "更多"
+  },
+  "problems": "常见问题",
+  "extra": "拓展内容"
 }

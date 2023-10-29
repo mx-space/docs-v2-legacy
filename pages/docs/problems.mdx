@@ -1,0 +1,125 @@
+# 常见问题
+
+如果可以，建议你先补充一下你的基本信息，这样或许可以更快的帮助你解决问题。
+
+import { useState, useEffect } from "react";
+import clsx from "clsx";
+
+export function BasicInfo() {
+  // FIX: by @wibus-wee
+  // dbq. 这个组件写了很严重的shit code，但是我懒得改了，主要是能在这里检查的东西并不多，甚至 CORS 都没法检查，所以就这样吧
+  // shit 指：
+  // 1. 这个 info 居然是 Array! 但是明明只有两个，即前端和后端
+  // 2. 为了解决这个问题，我居然选择了 index === 0 ? "后端服务" : "前端主题" 的方式来判断！
+  // 3. wibus-wee 就是个fw， 所以写啥都变成 shit code
+
+  const [backend, setBackend] = useState("https://api.example.com");
+  const [frontend, setFrontend] = useState("https://example.com");
+  const [info, setInfo] = useState([
+    {
+      https: true,
+      access: true,
+    },
+    {
+      https: true,
+      access: true,
+    }
+  ]);
+
+return (
+
+  <>
+    <div className="flex items-center space-x-4 mb-4 mt-4">
+
+      <input
+        type="text"
+        className="border rounded px-2 py-2 w-1/2 bg-transparent focus:outline-none focus:border-black hover:border-white-400 transition duration-300 font-[400] font-sans text-sm cursor-not-allowed dark:border-gray-700 dark:text-gray-300"
+        value={`你的后端地址（即部署了 mx-space/core 的外网地址）`}
+        disabled
+      />
+      <input
+        type={"text"}
+        className="border rounded px-2 py-2 w-1/2 focus:outline-none focus:border-black hover:border-gray-400 transition duration-300 font-[400] font-sans text-sm dark:border-gray-700 dark:text-gray-300"
+        style={{ outline: "none", boxShadow: "none" }}
+        placeholder={`Enter value...`}
+        value={backend}
+        onChange={(e) => setBackend(e.target.value)}
+      />
+    </div>
+
+    <div className="flex items-center space-x-4">
+      <input
+        type="text"
+        className="border rounded px-2 py-2 w-1/2 bg-transparent focus:outline-none focus:border-black hover:border-white-400 transition duration-300 font-[400] font-sans text-sm cursor-not-allowed dark:border-gray-700 dark:text-gray-300"
+        value={`你的前端地址（即部署了前端主题的外网地址）`}
+        disabled
+      />
+      <input
+        type={"text"}
+        className="border rounded px-2 py-2 w-1/2 focus:outline-none focus:border-black hover:border-gray-400 transition duration-300 font-[400] font-sans text-sm dark:border-gray-700 dark:text-gray-300"
+        style={{ outline: "none", boxShadow: "none" }}
+        placeholder={`Enter value...`}
+        value={frontend}
+        onChange={(e) => setFrontend(e.target.value)}
+      />
+    </div>
+
+    <h2 className="text-lg font-bold mt-4">基本检查</h2>
+
+    <div className="flex mt-4 space-between">
+      {
+        info.map((i, index) => {
+          return (
+            <div key={index} className="w-1/2">
+              <h3 className="text-sm font-bold mb-2">
+              {
+                index === 0 ? "后端服务" : "前端主题"
+              }
+              </h3>
+              <div className="flex items-center space-x-2">
+              <div className={clsx("w-4 h-4 rounded-full", info.https ? "bg-green-400" : "bg-red-400")}></div>
+              <p className="text-sm">
+                HTTPS 前缀
+                <code className={clsx("ml-1 px-1",info.https ? "bg-green-400" : "bg-red-400")}>
+                <span>{info.https ? "正常" : "异常"}</span>
+                </code>
+              </p>
+            </div>
+            <div className="flex items-center space-x-2 mt-2">
+              <div className={clsx("w-4 h-4 rounded-full", info.access ? "bg-green-400" : "bg-red-400")}></div>
+              <p className="text-sm">
+                连通性
+                <code className={clsx("ml-1 px-1",info.access ? "bg-green-400" : "bg-red-400")}>
+                  <span>{info.access ? "正常" : "异常"}</span>
+                </code>
+              </p>
+            </div>
+            </div>
+          )
+        })
+      }
+    </div>
+
+  </>
+    )
+}
+
+<BasicInfo />
+
+## 后端服务类问题
+
+### 后端 SSL 出现问题
+
+### 后端 Cross-Origin 设置错误
+
+### 网关、API 填错 / 填反
+
+按照常理思路，即本文档所介绍的部署方式，你的网关地址应该是
+
+### 内核出现问题
+
+## 前端主题类问题
+
+### ClientSide 报错
+
+### ServerSide 报错
