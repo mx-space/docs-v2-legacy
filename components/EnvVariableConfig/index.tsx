@@ -21,7 +21,7 @@ export function EnvVariableConfig({ variableNames }) {
         <div key={`${name.key}`} className="flex items-center space-x-4 mb-4">
           <input
             type="text"
-            className="border rounded px-2 py-2 w-1/2 bg-transparent focus:outline-none focus:border-black hover:border-white-400 transition duration-300 font-[400] font-sans text-sm cursor-not-allowed"
+            className="border rounded px-2 py-2 w-1/2 bg-transparent focus:outline-none focus:border-black hover:border-white-400 transition duration-300 font-[400] font-sans text-sm cursor-not-allowed dark:border-gray-700 dark:text-gray-300"
             value={name.name || name.key}
             data-tip={name.key}
             onMouseOver={(e: any) => {
@@ -43,7 +43,7 @@ export function EnvVariableConfig({ variableNames }) {
           <input
             type="text"
             // :focus-visible outline none
-            className="border rounded px-2 py-2 w-1/2 focus:outline-none focus:border-black hover:border-gray-400 transition duration-300 font-[400] font-sans text-sm" style={{ outline: "none", boxShadow: "none" }}
+            className="border rounded px-2 py-2 w-1/2 focus:outline-none focus:border-black hover:border-gray-400 transition duration-300 font-[400] font-sans text-sm dark:border-gray-700 dark:text-gray-300" style={{ outline: "none", boxShadow: "none" }}
             placeholder={`Enter value...`}
             value={values[index]}
             onChange={(e) => handleChange(index, e.target.value)}
@@ -54,7 +54,7 @@ export function EnvVariableConfig({ variableNames }) {
         <h2 className="sr-only">环境变量配置</h2>
         <button
           type="button"
-          className="border bg-black w-full text-white px-4 py-2 rounded-lg text-sm transform transition-all duration-300 focus:outline-none hover:bg-gray-700"
+          className="border bg-black w-full text-white px-4 py-2 rounded-lg text-sm transform transition-all duration-300 focus:outline-none hover:bg-gray-700 dark:border-gray-700 dark:text-gray-300"
           onClick={handleCopy}
         >
           复制
