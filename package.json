@@ -23,7 +23,7 @@
     "clsx": "^1.2.1",
     "copy-to-clipboard": "^3.3.3",
     "framer-motion": "^10.12.18",
-    "next": "^13.4.9",
+    "next": "^14.0.0",
     "nextra": "latest",
     "nextra-theme-docs": "latest",
     "postcss": "^8.4.25",
