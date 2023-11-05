@@ -1,125 +1,56 @@
 # 常见问题
 
-如果可以，建议你先补充一下你的基本信息，这样或许可以更快的帮助你解决问题。
-
-import { useState, useEffect } from "react";
-import clsx from "clsx";
-
-export function BasicInfo() {
-  // FIX: by @wibus-wee
-  // dbq. 这个组件写了很严重的shit code，但是我懒得改了，主要是能在这里检查的东西并不多，甚至 CORS 都没法检查，所以就这样吧
-  // shit 指：
-  // 1. 这个 info 居然是 Array! 但是明明只有两个，即前端和后端
-  // 2. 为了解决这个问题，我居然选择了 index === 0 ? "后端服务" : "前端主题" 的方式来判断！
-  // 3. wibus-wee 就是个fw， 所以写啥都变成 shit code
-
-  const [backend, setBackend] = useState("https://api.example.com");
-  const [frontend, setFrontend] = useState("https://example.com");
-  const [info, setInfo] = useState([
-    {
-      https: true,
-      access: true,
-    },
-    {
-      https: true,
-      access: true,
-    }
-  ]);
-
-return (
-
-  <>
-    <div className="flex items-center space-x-4 mb-4 mt-4">
-
-      <input
-        type="text"
-        className="border rounded px-2 py-2 w-1/2 bg-transparent focus:outline-none focus:border-black hover:border-white-400 transition duration-300 font-[400] font-sans text-sm cursor-not-allowed dark:border-gray-700 dark:text-gray-300"
-        value={`你的后端地址（即部署了 mx-space/core 的外网地址）`}
-        disabled
-      />
-      <input
-        type={"text"}
-        className="border rounded px-2 py-2 w-1/2 focus:outline-none focus:border-black hover:border-gray-400 transition duration-300 font-[400] font-sans text-sm dark:border-gray-700 dark:text-gray-300"
-        style={{ outline: "none", boxShadow: "none" }}
-        placeholder={`Enter value...`}
-        value={backend}
-        onChange={(e) => setBackend(e.target.value)}
-      />
-    </div>
-
-    <div className="flex items-center space-x-4">
-      <input
-        type="text"
-        className="border rounded px-2 py-2 w-1/2 bg-transparent focus:outline-none focus:border-black hover:border-white-400 transition duration-300 font-[400] font-sans text-sm cursor-not-allowed dark:border-gray-700 dark:text-gray-300"
-        value={`你的前端地址（即部署了前端主题的外网地址）`}
-        disabled
-      />
-      <input
-        type={"text"}
-        className="border rounded px-2 py-2 w-1/2 focus:outline-none focus:border-black hover:border-gray-400 transition duration-300 font-[400] font-sans text-sm dark:border-gray-700 dark:text-gray-300"
-        style={{ outline: "none", boxShadow: "none" }}
-        placeholder={`Enter value...`}
-        value={frontend}
-        onChange={(e) => setFrontend(e.target.value)}
-      />
-    </div>
-
-    <h2 className="text-lg font-bold mt-4">基本检查</h2>
-
-    <div className="flex mt-4 space-between">
-      {
-        info.map((i, index) => {
-          return (
-            <div key={index} className="w-1/2">
-              <h3 className="text-sm font-bold mb-2">
-              {
-                index === 0 ? "后端服务" : "前端主题"
-              }
-              </h3>
-              <div className="flex items-center space-x-2">
-              <div className={clsx("w-4 h-4 rounded-full", info.https ? "bg-green-400" : "bg-red-400")}></div>
-              <p className="text-sm">
-                HTTPS 前缀
-                <code className={clsx("ml-1 px-1",info.https ? "bg-green-400" : "bg-red-400")}>
-                <span>{info.https ? "正常" : "异常"}</span>
-                </code>
-              </p>
-            </div>
-            <div className="flex items-center space-x-2 mt-2">
-              <div className={clsx("w-4 h-4 rounded-full", info.access ? "bg-green-400" : "bg-red-400")}></div>
-              <p className="text-sm">
-                连通性
-                <code className={clsx("ml-1 px-1",info.access ? "bg-green-400" : "bg-red-400")}>
-                  <span>{info.access ? "正常" : "异常"}</span>
-                </code>
-              </p>
-            </div>
-            </div>
-          )
-        })
-      }
-    </div>
-
-  </>
-    )
-}
-
-<BasicInfo />
-
 ## 后端服务类问题
 
 ### 后端 SSL 出现问题
 
+TBD.
+
+很多时候出现前后端联通出现问题的情况都是因为后端的 SSL 配置出现了问题，mx-space 要求前后端都需要同时配置 SSL，否则无法正常工作。
+
+请检查你的后端 SSL 配置是否正确，我们推荐你使用 Caddy，使用 Caddy 可以很方便的配置 SSL
+
 ### 后端 Cross-Origin 设置错误
+
+TBD.
 
 ### 网关、API 填错 / 填反
 
-按照常理思路，即本文档所介绍的部署方式，你的网关地址应该是
+按照常理思路，即本文档所介绍的部署方式，你的网关地址应该是 `https://api.example.com`，而你的 API 地址应该是 `https://api.example.com/api/v2`
+
+二者填反，会导致前端无法正常访问 API，从而导致前端无法正常工作。
 
 ### 内核出现问题
+
+TBD.
 
 ## 前端主题类问题
 
 ### ClientSide 报错
 
+> 此处是讲述如何 Debug，而非如何解决问题，这里发生的问题数不胜数，无法一一列举，建议通过 AI + Google + GitHub Issues 来解决问题
+
+这是最常见的问题，也是最容易解决的问题，你只需要打开浏览器的开发者工具，查看控制台输出即可，如果你不知道如何打开浏览器的开发者工具，那么你可以通过 Google 来解决「如何打开」这个问题。
+
+在截取控制台输出的时候，你可以通过截图的方式，也可以通过复制的方式，请不要只截取一部分，而是截取全部，我们发现有一些只截取报错的前几行，而不截取完整的报错信息，这样我们是无法帮助你解决问题的。
+
 ### ServerSide 报错
+
+> 此处是讲述如何 Debug，而非如何解决问题，这里发生的问题数不胜数，无法一一列举，建议通过 AI + Google + GitHub Issues 来解决问题
+
+ServerSide 报错，通常是指后端报错，这种报错通常是由于后端配置错误导致的，你可以通过查看后端的日志来解决问题。
+
+如果你是使用 Vercel 部署的，查看错误日志的方式如下：
+
+1. 打开 Vercel 的控制台
+2. 点击你的项目
+3. 点击「Logs」
+4. 查看错误日志
+
+同样的，你也可以通过截图或者复制的方式来获取完整的错误日志，但不是只截取一部分。
+
+如果你是使用 Docker 部署的，查看错误日志的方式如下：
+
+1. 打开你的服务器
+2. 进入你的 Docker 容器
+3. 查看错误日志
