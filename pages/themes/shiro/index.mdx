@@ -1,16 +1,31 @@
-import { Card, Cards, Callout } from "nextra/components";
+import { Card, Cards, Callout } from 'nextra/components'
 
 # Shiro 主题
 
-import { ToGitHub } from '@components/ToGitHub';
+import { ToGitHub } from '@components/ToGitHub'
 
 <ToGitHub repo="Innei/Shiro" />
 
 ## Demo
 
 <Cards num={2}>
-  <Card arrow href="https://innei.in" title="静かな森" icon={<img src="https://innei.in/innei.svg" width={"25em"} />} />
-  <Card arrow href="https://blog.wibus.ren" title="可愛い松" icon={<img src="https://cdn.my-api.cn/user/w/asset-pic-picgo/2022-12-152kb_waifu-up3x-denoise3x.jpg" width={"25em"} />} />
+  <Card
+    arrow
+    href="https://innei.in"
+    title="静かな森"
+    icon={<img src="https://innei.in/innei.svg" width={'25em'} />}
+  />
+  <Card
+    arrow
+    href="https://blog.wibus.ren"
+    title="可愛い松"
+    icon={
+      <img
+        src="https://cdn.my-api.cn/user/w/asset-pic-picgo/2022-12-152kb_waifu-up3x-denoise3x.jpg"
+        width={'25em'}
+      />
+    }
+  />
 </Cards>
 
 ## 前提要求
@@ -20,23 +35,24 @@ import { ToGitHub } from '@components/ToGitHub';
 - 你已注册 [Clerk](https://clerk.com/) 账号
 
 <Callout type="warning">
-请注意，Shiro 主题的部署教程与初版有所不同，如果你已经部署过 Shiro 主题，请重新阅读本文档（尤其是填入配置文件环节，配置有所变化），并阅读最后一节[「移除 Edge Config」](#移除-edge-config)。
+  请注意，Shiro 主题的部署教程与初版有所不同，如果你已经部署过 Shiro 主题，请重新阅读本文档（尤其是填入配置文件环节，配置有所变化），并阅读最后一节[「移除 Edge Config」](#移除-edge-config)。
 </Callout>
 
 ## 安装
 
 import { Steps } from 'nextra/components'
-import Video from '@components/Video';
+import Video from '@components/Video'
 
 <Steps>
+
 ### 克隆仓库
  
 登陆 GitHub 账号，打开 [Innei/Shiro](https://github.com/Innei/Shiro)，点击右上角的 Fork 按钮，将仓库克隆到你的账号下。
 
 <Video src="https://pan.vinua.cn/f/73dt6/fork_shiro.mp4" />
- 
-### 打开 Vercel 创建项目
- 
+
+### 打开 Vercel 创建项目 
+
 登陆 Vercel 账号，点击右上角的 New Project 按钮，选择 Import Git Repository，选择你刚刚 Fork 的仓库，点击 Import 按钮，即可进入到项目配置页面。
 
 <Video src="https://pan.vinua.cn/f/52ocj/shiro_create_new_project.mp4" />
@@ -59,7 +75,7 @@ import Video from '@components/Video';
 - 数据：（点击下方的按钮复制）
 
 <Callout>
-请注意，这份配置你需要自行修改成符合你的需求的配置。直接使用下面的配置可能会导致你的博客无法按照你的预期运行。
+  请注意，这份配置你需要自行修改成符合你的需求的配置。直接使用下面的配置可能会导致你的博客无法按照你的预期运行。
 </Callout>
 
 ```json showLineNumbers
@@ -193,29 +209,27 @@ import Video from '@components/Video';
 
 在下方的配置表格中，填入你的环境变量，然后点击复制按钮，将环境变量复制到剪贴板中。
 
-import { EnvVariableConfig } from '@components/EnvVariableConfig';
+import { EnvVariableConfig } from '@components/EnvVariableConfig'
 
-<EnvVariableConfig 
-  variableNames={
-    [
-      {
-        key: 'NEXT_PUBLIC_API_URL',
-        name: "后端 API 地址"
-      }, 
-      {
-        key: 'NEXT_PUBLIC_GATEWAY_URL',
-        name: "后端网关地址"
-      }, 
-      {
-        key: 'NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY',
-        name: "Clerk 页面的公钥"
-      }, 
-      {
-        key: 'CLERK_SECRET_KEY',
-        name: "Clerk 页面的私钥"
-      }
-      ]
-  } 
+<EnvVariableConfig
+  variableNames={[
+    {
+      key: 'NEXT_PUBLIC_API_URL',
+      name: '后端 API 地址',
+    },
+    {
+      key: 'NEXT_PUBLIC_GATEWAY_URL',
+      name: '后端网关地址',
+    },
+    {
+      key: 'NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY',
+      name: 'Clerk 页面的公钥',
+    },
+    {
+      key: 'CLERK_SECRET_KEY',
+      name: 'Clerk 页面的私钥',
+    },
+  ]}
 />
 
 ### 键入环境变量 & 开始部署
@@ -223,6 +237,32 @@ import { EnvVariableConfig } from '@components/EnvVariableConfig';
 在刚刚进入的 Vercel 项目配置页面中，点击 Environment Variables，然后键盘上的 Ctrl + V 将环境变量粘贴到输入框中，然后点击 Deploy 按钮，等待部署完成。
 
 <Video src="https://pan.vinua.cn/f/g3YfL/shiro_deploy.mp4" />
+
+### Clerk 登录与 Mix Space 后端绑定
+
+如果你遇到在 Shiro 登录之后，无法评论遇到 "和主人重名" 的报错，是因为 Clerk 的用户名和 Mix Space 后端的用户名重复了，你需要绑定本系统和 Clerk 的用户。让某个 Clerk 用户具有管理员权限。
+
+具体操作方法：
+
+1. 升级 Mix Space Core 到 4.7.0 以上版本。
+
+2. 打开 Clerk 对于此项目的控制台：
+
+PEM 的获取方式：
+
+https://clerk.com/docs/backend-requests/handling/manual-jwt
+![](https://github.com/Innei/Shiro/assets/41265413/7bb103d1-85ef-4da8-9bba-3fc7f3bf01d7)
+
+Key:
+![](https://github.com/Innei/Shiro/assets/41265413/db344105-e780-4727-979a-e0606daa46ef)
+
+3. 在 Shiro 用 clerk 登录后，通过 console 抓取请求：
+
+你的 clerk User Id 获取方式：
+
+![](https://github.com/Innei/Shiro/assets/41265413/234b700b-6cd7-4be1-a6b7-e3d68af7def3)
+
+Refer: https://github.com/Innei/Shiro/issues/137
 
 ### 完成！
 
@@ -232,7 +272,7 @@ import { EnvVariableConfig } from '@components/EnvVariableConfig';
 
 ## 移除 Edge Config
 
-在后续的 Shiro 更新中， Edge Config 将不再被使用。你可能需要移除 Edge Config，以防止不必要的资源使用。
+在后续的 Shiro 更新中，Edge Config 将不再被使用。你可能需要移除 Edge Config，以防止不必要的资源使用。
 
 进入 Vercel 部署此项目的仪表盘，点击上方的 Storage，进入设置页面，点击左侧的 Projects，将链接的项目取消链接，接着点击左侧的 Settings，点击右侧的 Delete Edge Config 按钮，即可完成删除。
 
@@ -243,10 +283,10 @@ import { EnvVariableConfig } from '@components/EnvVariableConfig';
 ![](https://pan.vinua.cn/f/GRefM/0.png)
 
 <style global jsx>{`
- .nextra-cards img {
-   border-radius: 50%;
+  .nextra-cards img {
+    border-radius: 50%;
   }
- .nextra-content pre {
-     max-height: 50vh;
+  .nextra-content pre {
+    max-height: 50vh;
   }
 `}</style>
