@@ -15,6 +15,13 @@ import { Callout, Steps } from "nextra/components";
 由于 Kami 主题已不再维护并 Achieved ，该部分文档将会保持最小程度的更新；值得注意的是，使用 Kami 要求服务器的 Linux 内核版本不小于 4.19。
 </Callout>
 
+## 目前发现的与新版 Core 的冲突
+
+由于 Kami 已不再维护，如果你想继续使用，你需要自行解决 Core 版本更新带来的 BREAKING CHANGE 导致的 kami 功能丢失问题。
+
+- 点赞接口不兼容，已迁移至 `Activity Module` - [Source](https://github.com/mx-space/core/blob/master/apps/core/src/modules/activity/activity.controller.ts#L15-L26)
+- 阅读计数不再自动 increase, 已抽离至 `Ack Module` - [Source](https://github.com/mx-space/core/blob/master/apps/core/src/modules/ack/ack.controller.ts#L31-L39)
+
 
 <Steps>
 ### 检查内核版本
