@@ -35,7 +35,9 @@ import { ToGitHub } from '@components/ToGitHub'
 - 你已注册 [Clerk](https://clerk.com/) 账号
 
 <Callout type="warning">
-  请注意，Shiro 主题的部署教程与初版有所不同，如果你已经部署过 Shiro 主题，请重新阅读本文档（尤其是填入配置文件环节，配置有所变化），并阅读最后一节[「移除 Edge Config」](#移除-edge-config)。
+  请注意，Shiro 主题的部署教程与初版有所不同，如果你已经部署过 Shiro
+  主题，请重新阅读本文档（尤其是填入配置文件环节，配置有所变化），并阅读最后一节
+  [「移除 Edge Config」](#移除-edge-config)。
 </Callout>
 
 ## 安装
@@ -46,12 +48,12 @@ import Video from '@components/Video'
 <Steps>
 
 ### 克隆仓库
- 
+
 登陆 GitHub 账号，打开 [Innei/Shiro](https://github.com/Innei/Shiro)，点击右上角的 Fork 按钮，将仓库克隆到你的账号下。
 
 <Video src="https://pan.vinua.cn/f/73dt6/fork_shiro.mp4" />
 
-### 打开 Vercel 创建项目 
+### 打开 Vercel 创建项目
 
 登陆 Vercel 账号，点击右上角的 New Project 按钮，选择 Import Git Repository，选择你刚刚 Fork 的仓库，点击 Import 按钮，即可进入到项目配置页面。
 
@@ -290,3 +292,12 @@ Refer: https://github.com/Innei/Shiro/issues/137
     max-height: 50vh;
   }
 `}</style>
+
+## 扩展的 Markdown 语法
+
+参考 https://shiro.innei.in/#/markdown
+
+** 对于 LinkCard 的解析，某些需要你填写 API Key**
+
+- GitHub，默认直接用浏览器访问，可能受到 rate limit，可以填写 `GH_TOKEN` 以保证 API 可达性。
+- TMDB，必须填写 `TMDB_API_KEY` 才可以正确解析 tmdb 的链接。参考 https://post.smzdm.com/p/a5op4w33/
