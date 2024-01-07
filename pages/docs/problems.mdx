@@ -24,6 +24,21 @@ TBD.
 
 TBD.
 
+### Docker MongoDB Container 无法正常启动
+
+如果您是使用 Docker 部署的 Core，更新后，你却发现 MongoDB Container 无法正常启动（一直在 `Restarting` 状态）这大概率是因为 MongoDB 大版本更新出现 BREAKING CHANGE 导致的，这种情况下，你需要锁定 MongoDB 的版本。
+
+请前往 `docker-compose.yml`，锁定 MongoDB 的版本，例如：
+
+```diff
+mongo:
+  container_name: mongo
+-  image: mongo
++  image: mongo:6.0.8
+```
+
+接着重新执行 `docker-compose up -d` 即可。
+
 ## 前端主题类问题
 
 ### ClientSide 报错
