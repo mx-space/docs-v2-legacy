@@ -1,5 +1,7 @@
 # 信息加密与安全性
 
+import { Callout } from 'nextra/components'
+
 在 v3.41.0 后续版本，加入了敏感信息加密功能。默认为关。
 
 为什么需要信息加密。
@@ -26,19 +28,22 @@ node index.js --encrypt_enable
 
 密钥可以通过 `openssl rand -hex 32` 命令生成。请务必牢记。
 
-::: info
-`MX_ENCRYPT_KEY` `--encrypt_key` 不是必须的，默认取机器的 [machine-id](https://www.npmjs.com/package/node-machine-id)。
-:::
+<Callout type="info">
+  `MX_ENCRYPT_KEY` `--encrypt_key` 不是必须的，默认取机器的
+  [machine-id](https://www.npmjs.com/package/node-machine-id)。
+</Callout>
 
-::: warning
+<Callout type="warning">
 此操作时不可逆的，操作前请备份数据库。
-:::
+
+</Callout>
 
 ## 自动化加密配置（进阶指令）（非必要）
 
-::: danger
-此操作时也是不可逆的，操作前请备份数据库。
-:::
+<Callout type="error">
+此操作时不可逆的，操作前请备份数据库。
+
+</Callout>
 
 ```bash
 cd core
