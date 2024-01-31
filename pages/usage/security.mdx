@@ -18,10 +18,10 @@ import { Callout } from 'nextra/components'
 node index.js --encrypt_enable
 ```
 
-可以通过附加 `--encrypt_key <key>` 来指定加密密钥，长度必须为 64 位。请牢记此密钥。或者通过环境变量 `MX_ENCRYPT_KEY` 也可以指定密钥。
+可以通过附加 `--encrypt_key <key>` 来指定加密密钥，长度必须为 64 位，且只有小写字母和数字。请牢记此密钥。或者通过环境变量 `MX_ENCRYPT_KEY` 也可以指定密钥。
 
 <Callout type="warning">
-  若开启加密，则需注意密钥长度**必须为 64 位**，不然会在初始化时报错。注意这是**不可逆**的，务必保存自己的秘钥。
+  若开启加密，则需注意密钥长度**必须为 64 位且只有小写字母和数字**，不然会在初始化时报错。注意这是**不可逆**的，务必保存自己的秘钥。
   API Key.
 
 </Callout>
