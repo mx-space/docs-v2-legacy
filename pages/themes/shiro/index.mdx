@@ -84,7 +84,11 @@ import Video from '@components/Video'
 {
   "footer": {
     "otherInfo": {
-      "date": "2020-{{now}}"
+      "date": "2020-{{now}}",
+      "icp": {
+        "text": "萌 ICP 备 20236136 号",
+        "link": "https://icp.gov.moe/?keyword=20236136"
+      }
     },
     "linkSections": [
       {
@@ -96,7 +100,7 @@ import Video from '@components/Video'
           },
           {
             "name": "关于我",
-            "href": "/about-me"
+            "href": "/about"
           },
           {
             "name": "关于此项目",
@@ -115,6 +119,11 @@ import Video from '@components/Video'
           {
             "name": "友链",
             "href": "/friends"
+          },
+          {
+            "name": "监控",
+            "href": "https://status.innei.in/status/main",
+            "external": true
           }
         ]
       },
@@ -127,12 +136,12 @@ import Video from '@components/Video'
           },
           {
             "name": "发邮件",
-            "href": "mailto:wibus@qq.com",
+            "href": "mailto:i@innei.ren",
             "external": true
           },
           {
             "name": "GitHub",
-            "href": "https://github.com/wibus-wee",
+            "href": "https://github.com/innei",
             "external": true
           }
         ]
@@ -140,12 +149,46 @@ import Video from '@components/Video'
     ]
   },
   "config": {
-    "site": {
-      "favicon": "/wibus.jpg"
+    "color": {
+      "light": [
+        "#33A6B8",
+        "#FF6666",
+        "#26A69A",
+        "#fb7287",
+        "#69a6cc",
+        "#F11A7B",
+        "#78C1F3",
+        "#FF6666",
+        "#7ACDF6"
+      ],
+      "dark": [
+        "#F596AA",
+        "#A0A7D4",
+        "#ff7b7b",
+        "#99D8CF",
+        "#838BC6",
+        "#FFE5AD",
+        "#9BE8D8",
+        "#A1CCD1",
+        "#EAAEBA"
+      ]
     },
+   
+    "bg": [
+      "https://github.com/Innei/static/blob/master/images/F0q8mwwaIAEtird.jpeg?raw=true",
+      "https://github.com/Innei/static/blob/master/images/IMG_2111.jpeg.webp.jpg?raw=true"
+    ],
     "custom": {
-      "scripts": null,
-      "styles": null
+      "css": [],
+      "styles": [],
+      "js": [],
+      "scripts": [
+         
+      ]
+    },
+    "site": {
+      "favicon": "/innei.svg",
+      "faviconDark": "/innei-dark.svg"
     },
     "hero": {
       "title": {
@@ -170,12 +213,12 @@ import Video from '@components/Video'
           },
           {
             "type": "h1",
-            "text": "A NodeJS Full Stack",
+            "text": "A NodeJS Full Stack ",
             "class": "font-light text-4xl"
           },
           {
             "type": "code",
-            "text": "<Developer/>",
+            "text": "<Developer />",
             "class": "font-medium mx-2 text-3xl rounded p-1 bg-gray-200 dark:bg-gray-800/0 hover:dark:bg-gray-800/100 bg-opacity-0 hover:bg-opacity-100 transition-background duration-200"
           },
           {
@@ -187,12 +230,16 @@ import Video from '@components/Video'
       "description": "An independent developer coding with love."
     },
     "module": {
+      "activity": {
+        "enable": true,
+        "endpoint": "/fn/ps/update"
+      },
       "donate": {
         "enable": true,
-        "link": " https://afdian.net/@Innei ",
+        "link": "https://afdian.net/@Innei",
         "qrcode": [
-          " https://cdn.jsdelivr.net/gh/Innei/img-bed@master/20191211132347.png ",
-          " https://cdn.innei.ren/bed/2023/0424213144.png "
+          "https://cdn.jsdelivr.net/gh/Innei/img-bed@master/20191211132347.png",
+          "https://cdn.innei.ren/bed/2023/0424213144.png"
         ]
       },
       "bilibili": {
