@@ -3,7 +3,7 @@ import { DocsThemeConfig, useConfig } from 'nextra-theme-docs'
 import { useRouter } from 'next/router'
 const logo = (
   <span>
-    <img src='/logo.png' />
+    <img src="/logo.png" />
     Mix Space
     <style jsx>{`
       span {
@@ -74,28 +74,32 @@ const config: DocsThemeConfig = {
   footer: {
     text: (
       <div className="flex w-full flex-col items-center sm:items-start">
-      <p className="text-xs">
-        © {new Date().getFullYear()} This project is licensed under AGPLv3 licensed. 2021 Innei
-      </p>
-    </div>
-    )
+        <p className="text-xs">
+          © {new Date().getFullYear()} This project is licensed under AGPLv3
+          with additional terms, and this documentation is licensed under CC BY
+          4.0. All licensed. 2021-present Mix Space Team
+        </p>
+      </div>
+    ),
   },
   useNextSeoProps() {
     const { asPath } = useRouter()
     if (asPath !== '/') {
       return {
-        titleTemplate: '%s | Mix Space'
+        titleTemplate: '%s | Mix Space',
       }
     }
   },
   editLink: {
-    text: 'Edit this page on GitHub →'
+    text: 'Edit this page on GitHub →',
   },
   banner: {
     key: 'theme-shiro',
-    text: <a href="https://mx-space.js.org/themes/shiro" target="_blank">
-      🎨 New Mix Space theme `Shiro` is released. Read more →
-    </a>,
+    text: (
+      <a href="https://mx-space.js.org/themes/shiro" target="_blank">
+        🎨 New Mix Space theme `Shiro` is released. Read more →
+      </a>
+    ),
   },
 }
 
