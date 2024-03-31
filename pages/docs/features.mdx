@@ -1,23 +1,5 @@
 # 主要功能
 
-## Mix Space + Markdown > HTML
-
-Mix Space 的 Markdown 除了支持标准的 Markdown 语法和 GFM 外，还支持「文本宏」，它可以让你在文章中使用动态数据，比如：
-
-```html /[[ #dayjs($modified).format('YY-MM') ]]/
-<p align="right">更新于 [[ #dayjs($modified).format('YY-MM') ]]</p>
-```
-
-在经过 Mix Space 处理后，会被替换成：
-
-```html /22-04/
-<p align="right">更新于 22-04</p>
-```
-
-这种简易的以 `[[` 开头， `]]` 结尾的语法，非常便于使用。你甚至可以使用任意 JS 代码去执行一个函数，也可以是一个 JS 语句。
-
-了解更多有关文本宏的信息 [功能 - 文本宏](/usage/macros)
-
 ## 日记
 
 作为个人空间，日记是必不可少的功能。Mix Space 的日记功能非常强大，它支持：
