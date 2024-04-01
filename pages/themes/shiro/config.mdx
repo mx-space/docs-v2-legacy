@@ -1,27 +1,27 @@
 # 配置项
 
-## 页脚信息(`footer`)
+## 页脚信息 (`footer`)
 
 此部分定义页脚的部分信息，主要包括备案、建站年份和页脚导航三部分。
 
-### 备案(`otherInfo.icp`)
+### 备案 (`otherInfo.icp`)
 
 此部分未在默认配置中提供。以下为参照写法：
 
 ```json
 "icp": {
-        "text": "浙ICP备20028356号",
-        "link": "https://beian.miit.gov.cn"
-      }
+    "text": "浙 ICP 备 20028356 号",
+    "link": "https://beian.miit.gov.cn"
+}
 ```
 
 **如何使用**: 根据参照写法，修改位于 `text` 的备案号以及备案号所指向的链接 `link`。
 
-### 建站年份(`otherInfo.date`）
+### 建站年份 (`otherInfo.date`)
 
 **如何使用**: `{{now}}` 指向当前年份，其他略。
 
-### 页脚导航(`linkSections`）
+### 页脚导航 (`linkSections`)
 
 分类包括 `name` 和 `links` 两个字段，对应分类名字及其下链接，其下链接又分为 `name`、`href`、`external` 三个字段，对应链接名字，指向链接和是否外链三个属性。
 
@@ -48,9 +48,29 @@
 
 ### 描述 (`description`)
 
-提供了对 `hero` 部分的简短描述。
+提供了对主页 `hero` 部分的简短描述。
 
 **如何使用**: 直接修改 `description` 的值以更改介绍文本。
+
+## 自定义脚本 (`config.custom`)
+
+可以配置自定义的 CSS, Script。
+
+### Scripts (`scripts`)
+
+自定义 JS 脚本。接受一个字符串数组。
+
+### Styles (`styles`)
+
+自定义 CSS。接受一个字符串数组。
+
+### JavaScript tag (`js`)
+
+接受一个 [Script](https://nextjs.org/docs/app/api-reference/components/script#props) Props 参数数组。
+
+### CSS href link (`css`)
+
+加载外部 CSS，接受一个 CSS 外部样式表链接数组。
 
 ## 模块 (`config.module`)
 
