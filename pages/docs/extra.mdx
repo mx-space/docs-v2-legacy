@@ -12,6 +12,8 @@ import { Callout } from 'nextra/components';
 
 当然不管使用哪种方法，都建议用控制面板（如宝塔、1Panel 等）的使用面板提供的反代功能单独粘贴对应的反代配置部分完成配置（需要删掉开头和结尾的 server 块），手写反代配置的大佬随意。
 
+另外，不管是前端还是后端的域名，都需要**配置好 HTTPS 证书**以保证网站能正常访问。
+
 ### 双域名
 
 这里假定前端域名为 `www.example.com`，后端为 `server.example.com`。
