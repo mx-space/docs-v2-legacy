@@ -21,7 +21,9 @@ export const TitleTag: FC<
 export const ProTag = () => {
   return (
     <TitleTag className="absolute translate-y-2 translate-x-2 z-[10]">
-      <span title="此功能仅闭源版本提供">闭源版本</span>
+      <a href="https://github.com/sponsors/Innei" target="_blank">
+        <span title="此功能仅供赞助或活跃贡献者提供">闭源版本</span>
+      </a>
     </TitleTag>
   )
 }
