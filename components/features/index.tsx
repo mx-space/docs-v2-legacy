@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react'
 import Link from 'next/link'
 import cn from 'clsx'
-import { motion } from 'framer-motion'
+import { motion, type HTMLMotionProps, type MotionProps } from 'framer-motion'
 
 import styles from './index.module.css'
 
@@ -14,7 +14,15 @@ export function Feature({
   href,
   index,
   ...props
-}) {
+}: {
+  large?: boolean
+  centered?: boolean
+  lightOnly?: boolean
+  children: ReactNode
+  className?: string
+  href?: string
+  index?: number
+} & HTMLMotionProps<'div'>) {
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -26,7 +34,7 @@ export function Feature({
         large && styles.large,
         centered && styles.centered,
         lightOnly && styles['light-only'],
-        className
+        className,
       )}
       {...props}
     >

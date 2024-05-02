@@ -2,15 +2,15 @@
 title: Mix Space - An Alternative Personal Space.
 ---
 
-import Link from "next/link";
-import cn from "clsx";
-import { useState } from "react";
-import Image from "next/image";
-import { motion } from "framer-motion";
-import { Features, Feature } from "@components/features";
-import styles from "./index.module.css";
-import docsCard from "../public/console.png";
-import docsCardDark from "../public/console-dark.png";
+import Link from 'next/link'
+import cn from 'clsx'
+import { useState } from 'react'
+import Image from 'next/image'
+import { motion } from 'framer-motion'
+import { Features, Feature } from '@components/features'
+import styles from './index.module.css'
+import docsCard from '../public/console.png'
+import docsCardDark from '../public/console-dark.png'
 
 <div className="home-content">
   <div className="content-container">
@@ -19,13 +19,28 @@ import docsCardDark from "../public/console-dark.png";
     <p className="subtitle">
       <Link className={styles.cta} href="/docs">5 分钟拥有自己的 Mix Space <span>→</span></Link>
     </p>
+
+    <img
+      className="uwu"
+      src="https://cdn.jsdelivr.net/gh/mx-space/.github@main/uwu.png"
+    />
+
   </div>
 <style jsx>{`
+  .uwu {
+    float: right;
+    height: 230px;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
   .content-container {
     max-width: 90rem;
     padding-left: max(env(safe-area-inset-left), 1.5rem);
     padding-right: max(env(safe-area-inset-right), 1.5rem);
     margin: 0 auto;
+    position: relative;
   }
   .features-container {
     margin: 8rem 0 0;
@@ -288,7 +303,7 @@ import docsCardDark from "../public/console-dark.png";
         </Feature>
         <Feature index={3} large id="macros-card" href="//usage/macros">
           <div style={{ zIndex: 2}}>
-            <h3>Markdown + 自定义语法, <br/>丰富您的内容。</h3>
+            <h3>Markdown + 自定义语法，<br/>丰富您的内容。</h3>
             <p>Mix Space 支持自定义 Markdown 内语法，您可以使用自定义语法来丰富您的内容。</p>
           </div>
           <div className="absolute w-full h-full inset-0 hidden sm:block bg-[linear-gradient(to_right,white_250px,_transparent)] dark:bg-[linear-gradient(to_right,#202020_250px,_transparent)] z-[1]"/>

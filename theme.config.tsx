@@ -3,8 +3,12 @@ import { DocsThemeConfig, useConfig } from 'nextra-theme-docs'
 import { useRouter } from 'next/router'
 const logo = (
   <span>
-    <img src="/logo.png" />
-    Mix Space
+    <img
+      height={40}
+      src="https://cdn.jsdelivr.net/gh/mx-space/.github@main/uwu.png"
+    />
+    <span>Mix Space</span>
+
     <style jsx>{`
       span {
         padding: 0.5rem 0.5rem 0.5rem 0;
@@ -23,7 +27,7 @@ const logo = (
       }
       img {
         margin-right: 8px;
-        height: 24px;
+        height: 40px;
       }
       span:hover {
         mask-position: 100%;
