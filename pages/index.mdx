@@ -14,206 +14,219 @@ import docsCardDark from '../public/console-dark.png'
 
 <div className="home-content">
   <div className="content-container">
-    <h1 className="headline">An Alternative <br className='sm:block hidden'/>Personal Space.</h1>
-    <p className="subtitle">一个替代个人空间的新方式<br className='sm:block hidden'/></p>
-    <p className="subtitle">
-      <Link className={styles.cta} href="/docs">5 分钟拥有自己的 Mix Space <span>→</span></Link>
+    <h1 className="headline text-center lg:text-left">
+      An Alternative <br className="sm:block hidden" />
+      Personal Space.
+    </h1>
+    <p className="my-4 text-xl text-center lg:text-left">
+      一个替代个人空间的新方式
     </p>
-
     <img
       className="uwu"
       src="https://cdn.jsdelivr.net/gh/mx-space/.github@main/uwu.png"
     />
-
+    <p className="subtitle text-center lg:text-left">
+      <Link className={styles.cta} href="/docs">
+        5 分钟拥有自己的 Mix Space <span>→</span>
+      </Link>
+    </p>
   </div>
-<style jsx>{`
-  .uwu {
-    float: right;
-    height: 230px;
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-  }
-  .content-container {
-    max-width: 90rem;
-    padding-left: max(env(safe-area-inset-left), 1.5rem);
-    padding-right: max(env(safe-area-inset-right), 1.5rem);
-    margin: 0 auto;
-    position: relative;
-  }
-  .features-container {
-    margin: 8rem 0 0;
-    padding: 4rem 0;
-    background-color: #f3f4f6;
-    border-bottom: 1px solid #e5e7eb;
-  }
-  .features-container .content-container {
-    margin-top: -8rem;
-  }
-  :global(.dark) .features-container {
-    background-color: #000;
-    border-bottom: 1px solid rgb(38, 38, 38);
-  }
-  .headline {
-    display: inline-block;
-    font-size: 3.125rem;
-    font-size: min(4.375rem, max(8vw, 2.5rem));
-    font-weight: 700;
-    font-feature-settings: initial;
-    letter-spacing: -0.12rem;
-    margin-left: -0.2rem;
-    margin-top: 3.4rem;
-    line-height: 1.1;
-    background-image: linear-gradient(146deg, #000, #757a7d);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-  :global(.dark) .headline {
-    background-image: linear-gradient(146deg, #fff, #757a7d);
-  }
-  .subtitle {
-    font-size: 1.3rem;
-    font-size: min(1.3rem, max(3.5vw, 1.2rem));
-    font-feature-settings: initial;
-    line-height: 1.6;
-  }
-  .nextjs-link {
-    color: currentColor;
-    text-decoration: none;
-    font-weight: 600;
-  }
-  :global(#docs-card) {
-    color: #fff;
-    text-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
-  }
-  :global(#docs-card img) {
-    object-fit: cover;
-    object-position: left;
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    height: 100%;
-    z-index: 0;
-    user-select: none;
-    pointer-events: none;
-  }
-  :global(#docs-card img:nth-child(2)) {
-    display: none;
-  }
-  :global(.dark #docs-card img:nth-child(2)) {
-    display: initial;
-  }
-  :global(.dark #docs-card img:nth-child(1)) {
-    display: none;
-  }
-  :global(.feat-darkmode) {
-    min-height: 300px;
-  }
-  :global(.feat-darkmode h3) {
-    font-size: 48px;
-  }
-  :global(#macros-card) {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-  :global(#macros-card p) {
-    max-width: 320px;
-  }
-  :global(#macros-card img:nth-child(2)) {
-    display: none;
-  }
-  :global(.dark #macros-card img:nth-child(2)) {
-    display: initial;
-  }
-  :global(.dark #macros-card img:nth-child(1)) {
-    display: none;
-  }
-  :global(#serverless-card) {
-    min-height: 240px;
-  }
-  :global(#serverless-card h3) {
-    text-align: left;
-    width: min(300px, 41%);
-    min-width: 155px;
-  }
-  :global(#analyze-card) {
-    background-image: url(/assets/high-contrast.png);
-    background-position: -170px 160px;
-  }
-  @media screen and (max-width: 1300px) {
-    :global(#analyze-card) {
-      background-image: linear-gradient(to bottom, white, transparent),
-        url(/assets/high-contrast.png);
+  <style jsx>{`
+    .uwu {
+      height: 230px;
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
     }
-  }
-  @media screen and (max-width: 1200px) {
-    :global(.feat-darkmode h3) {
-      font-size: 4vw;
-      font-size: min(48px, max(4vw, 30px));
+    @media screen and (max-width: 768px) {
+      .uwu {
+        position: relative;
+        float: none;
+        transform: none;
+        top: 0;
+        height: auto;
+      }
     }
-    :global(#macros-card img) {
-      aspect-ratio: 787/623;
-      height: auto;
+    .content-container {
+      max-width: 90rem;
+      padding-left: max(env(safe-area-inset-left), 1.5rem);
+      padding-right: max(env(safe-area-inset-right), 1.5rem);
+      margin: 0 auto;
+      position: relative;
+    }
+    .features-container {
+      margin: 8rem 0 0;
+      padding: 4rem 0;
+      background-color: #f3f4f6;
+      border-bottom: 1px solid #e5e7eb;
+    }
+    .features-container .content-container {
+      margin-top: -8rem;
+    }
+    :global(.dark) .features-container {
+      background-color: #000;
+      border-bottom: 1px solid rgb(38, 38, 38);
     }
     .headline {
-      letter-spacing: -0.08rem;
+      display: inline-block;
+      font-size: 3.125rem;
+      font-size: min(4.375rem, max(8vw, 2.5rem));
+      font-weight: 700;
+      font-feature-settings: initial;
+      letter-spacing: -0.12rem;
+      margin-left: -0.2rem;
+      margin-top: 3.4rem;
+      line-height: 1.1;
+      background-image: linear-gradient(146deg, #000, #757a7d);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
-  }
-  @media screen and (max-width: 1024px) {
+    :global(.dark) .headline {
+      background-image: linear-gradient(146deg, #fff, #757a7d);
+    }
+    .subtitle {
+      font-size: 1.3rem;
+      font-size: min(1.3rem, max(3.5vw, 1.2rem));
+      font-feature-settings: initial;
+      line-height: 1.6;
+    }
+    .nextjs-link {
+      color: currentColor;
+      text-decoration: none;
+      font-weight: 600;
+    }
     :global(#docs-card) {
-      aspect-ratio: 135/86;
-    }
-    :global(#macros-card) {
-      aspect-ratio: 8/3;
-    }
-    :global(#macros-card h3) {
-      text-align: left;
-    }
-    :global(#a11y-card) {
-      background-image: url(/assets/high-contrast.png);
-      background-position: center 160px;
-    }
-  }
-  @media screen and (max-width: 768px) {
-    :global(#docs-card) {
-      min-height: 348px;
-      width: 100%;
-      aspect-ratio: auto;
+      color: #fff;
+      text-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
     }
     :global(#docs-card img) {
-      object-position: -26px 0;
-      width: 250%;
-      max-width: initial;
+      object-fit: cover;
+      object-position: left;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      height: 100%;
+      z-index: 0;
+      user-select: none;
+      pointer-events: none;
     }
-  }
-  @media screen and (max-width: 640px) {
+    :global(#docs-card img:nth-child(2)) {
+      display: none;
+    }
+    :global(.dark #docs-card img:nth-child(2)) {
+      display: initial;
+    }
+    :global(.dark #docs-card img:nth-child(1)) {
+      display: none;
+    }
+    :global(.feat-darkmode) {
+      min-height: 300px;
+    }
+    :global(.feat-darkmode h3) {
+      font-size: 48px;
+    }
     :global(#macros-card) {
-      aspect-ratio: 2.5/2;
-      justify-content: flex-start;
-      align-items: stretch;
-      min-height: 350px;
-    }
-    :global(#macros-card h3) {
-      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
     :global(#macros-card p) {
-      max-width: 100%;
+      max-width: 320px;
     }
-    :global(#macros-card img) {
-      position: relative;
-      margin: 0.75em -1.75em 0;
-      max-width: calc(100% + 3.5em);
+    :global(#macros-card img:nth-child(2)) {
+      display: none;
     }
-    :global(.dark #macros-card img) {
-      mix-blend-mode: lighten;
+    :global(.dark #macros-card img:nth-child(2)) {
+      display: initial;
     }
-  }
-`}</style>
+    :global(.dark #macros-card img:nth-child(1)) {
+      display: none;
+    }
+    :global(#serverless-card) {
+      min-height: 240px;
+    }
+    :global(#serverless-card h3) {
+      text-align: left;
+      width: min(300px, 41%);
+      min-width: 155px;
+    }
+    :global(#analyze-card) {
+      background-image: url(/assets/high-contrast.png);
+      background-position: -170px 160px;
+    }
+    @media screen and (max-width: 1300px) {
+      :global(#analyze-card) {
+        background-image: linear-gradient(to bottom, white, transparent),
+          url(/assets/high-contrast.png);
+      }
+    }
+    @media screen and (max-width: 1200px) {
+      :global(.feat-darkmode h3) {
+        font-size: 4vw;
+        font-size: min(48px, max(4vw, 30px));
+      }
+      :global(#macros-card img) {
+        aspect-ratio: 787/623;
+        height: auto;
+      }
+      .headline {
+        letter-spacing: -0.08rem;
+      }
+    }
+    @media screen and (max-width: 1024px) {
+      :global(#docs-card) {
+        aspect-ratio: 135/86;
+      }
+      :global(#macros-card) {
+        aspect-ratio: 8/3;
+      }
+      :global(#macros-card h3) {
+        text-align: left;
+      }
+      :global(#a11y-card) {
+        background-image: url(/assets/high-contrast.png);
+        background-position: center 160px;
+      }
+    }
+    @media screen and (max-width: 768px) {
+      :global(#docs-card) {
+        min-height: 348px;
+        width: 100%;
+        aspect-ratio: auto;
+      }
+      :global(#docs-card img) {
+        object-position: -26px 0;
+        width: 250%;
+        max-width: initial;
+      }
+    }
+    @media screen and (max-width: 640px) {
+      :global(#macros-card) {
+        aspect-ratio: 2.5/2;
+        justify-content: flex-start;
+        align-items: stretch;
+        min-height: 350px;
+      }
+      :global(#macros-card h3) {
+        text-align: center;
+      }
+      :global(#macros-card p) {
+        max-width: 100%;
+      }
+      :global(#macros-card img) {
+        position: relative;
+        margin: 0.75em -1.75em 0;
+        max-width: calc(100% + 3.5em);
+      }
+      :global(.dark #macros-card img) {
+        mix-blend-mode: lighten;
+      }
+    }
+  `}</style>
 
   <div className="features-container">
     <div className="content-container">
@@ -221,13 +234,21 @@ import docsCardDark from '../public/console-dark.png'
         <Feature index={0} large centered id="docs-card" href="/docs/features">
           <Image src={docsCard} alt="Background" loading="eager" />
           <Image src={docsCardDark} alt="Background (Dark)" loading="eager" />
-          <h3>几分钟内创建<br className="show-on-mobile"/>强大的现代博客网站。</h3>
+          <h3>
+            几分钟内创建<br className="show-on-mobile" />
+            强大的现代博客网站。
+          </h3>
         </Feature>
         <Feature index={1} centered className="card-with-border" href="/docs">
           <div className="h-full flex flex-col justify-between">
-            <h3>部署<br className="show-on-mobile" /><span style={{ fontWeight: 300 }}>一行完成</span>.</h3>
-            <div className='text-left mb-8'>
-            Mix Space 有多种部署方式，您可以选择最适合您的方式来部署您的 Mix Space。采用 Docker 部署，您可以在几分钟内部署您的博客，而不需要任何专业知识。使用预设脚本部署亦是如此。
+            <h3>
+              部署
+              <span style={{ fontWeight: 300 }}>一行完成</span>.
+            </h3>
+            <div className="text-left mb-8 mt-2">
+              Mix Space 有多种部署方式，您可以选择最适合您的方式来部署您的 Mix
+              Space。采用 Docker
+              部署，您可以在几分钟内部署您的博客，而不需要任何专业知识。使用预设脚本部署亦是如此。
             </div>
             <div>
               <div className={styles.optimization}>
@@ -246,34 +267,44 @@ import docsCardDark from '../public/console-dark.png'
             </div>
           </div>
         </Feature>
-        <Feature index={2} centered className="feat-darkmode" style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}>
+        <Feature
+          index={2}
+          centered
+          className="feat-darkmode"
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
           <motion.div
             animate={{
               backgroundPosition: ['0% 0%', '50% 40%', '50% 40%', '100% 100%'],
-              backgroundImage: [`radial-gradient(farthest-corner, #e2e5ea, #e2e5ea)`, 'radial-gradient(farthest-corner, #06080a, #e2e5ea)', 'radial-gradient(farthest-corner, #06080a, #e2e5ea)', 'radial-gradient(farthest-corner, #e2e5ea, #e2e5ea)'],
+              backgroundImage: [
+                `radial-gradient(farthest-corner, #e2e5ea, #e2e5ea)`,
+                'radial-gradient(farthest-corner, #06080a, #e2e5ea)',
+                'radial-gradient(farthest-corner, #06080a, #e2e5ea)',
+                'radial-gradient(farthest-corner, #e2e5ea, #e2e5ea)',
+              ],
             }}
             transition={{
               backgroundPosition: {
-                times: [0, .5, .5, 1],
+                times: [0, 0.5, 0.5, 1],
                 type: 'tween',
                 repeat: Infinity,
                 duration: 10,
-                delay: 1
+                delay: 1,
               },
               backgroundImage: {
-                times: [0, .2, .8, 1],
+                times: [0, 0.2, 0.8, 1],
                 repeat: Infinity,
                 duration: 10,
-                delay: 1
+                delay: 1,
               },
             }}
             style={{
               top: 0,
-              left: "0",
+              left: '0',
               width: '100%',
               height: '100%',
               backgroundImage: `radial-gradient(farthest-corner, #06080a, #e2e5ea)`,
@@ -288,66 +319,122 @@ import docsCardDark from '../public/console-dark.png'
             }}
             transition={{
               color: {
-                times: [.25, .35, .7, .8],
+                times: [0.25, 0.35, 0.7, 0.8],
                 type: 'spring',
                 repeat: Infinity,
                 duration: 10,
-                delay: 1
+                delay: 1,
               },
             }}
             style={{
               position: 'relative',
               mixBlendMode: 'difference',
             }}
-          >全平台<br/>黑暗模式</motion.h3>
+          >
+            全平台
+
+            黑暗模式
+          </motion.h3>
         </Feature>
         <Feature index={3} large id="macros-card" href="//usage/macros">
-          <div style={{ zIndex: 2}}>
-            <h3>Markdown + 自定义语法，<br/>丰富您的内容。</h3>
-            <p>Mix Space 支持自定义 Markdown 内语法，您可以使用自定义语法来丰富您的内容。</p>
+          <div style={{ zIndex: 2 }}>
+            <h3>
+              Markdown + 自定义语法，
+              <br />
+              丰富您的内容。
+            </h3>
+            <p className='mt-2'>
+              Mix Space 支持自定义 Markdown
+              内语法，您可以使用自定义语法来丰富您的内容。
+            </p>
           </div>
-          <div className="absolute w-full h-full inset-0 hidden sm:block bg-[linear-gradient(to_right,white_250px,_transparent)] dark:bg-[linear-gradient(to_right,#202020_250px,_transparent)] z-[1]"/>
-          <img src="/macros.png" alt="Macros"  className="absolute w-full h-full inset-0 object-cover object-right-top z-0 dark:hidden"/>
-          <img src="/macros-dark.png" alt="Macros (Dark)"  className="absolute w-full h-full inset-0 object-cover object-right-top z-0 hidden dark:block"/>
+          <div className="absolute w-full h-full inset-0 hidden sm:block bg-[linear-gradient(to_right,white_250px,_transparent)] dark:bg-[linear-gradient(to_right,#202020_250px,_transparent)] z-[1]" />
+          <img
+            src="/macros.png"
+            alt="Macros"
+            className="absolute w-full h-full inset-0 object-cover object-right-top z-0 dark:hidden"
+          />
+          <img
+            src="/macros-dark.png"
+            alt="Macros (Dark)"
+            className="absolute w-full h-full inset-0 object-cover object-right-top z-0 hidden dark:block"
+          />
         </Feature>
-        <Feature index={4} large id="serverless-card" style={{
-          color: 'white',
-          backgroundImage: 'url(/serverless.png), url(/gradient-bg.jpg)',
-          backgroundSize: '140%, 180%',
-          backgroundPosition: '130px -8px, top',
-          backgroundRepeat: 'no-repeat',
-          textShadow: '0 1px 6px rgb(38 59 82 / 18%)',
-          aspectRatio: '1.765',
-        }} href="/usage/serverless">
-          <h3 style={{
-            marginTop: '-2rem',
-          }}>
-          无限扩展、无限可能，<br className="show-on-mobile" />实现歌单解析，追番列表等功能。
+        <Feature
+          index={4}
+          large
+          id="serverless-card"
+          style={{
+            color: 'white',
+            backgroundImage: 'url(/serverless.png), url(/gradient-bg.jpg)',
+            backgroundSize: '140%, 180%',
+            backgroundPosition: '130px -8px, top',
+            backgroundRepeat: 'no-repeat',
+            textShadow: '0 1px 6px rgb(38 59 82 / 18%)',
+            aspectRatio: '1.765',
+          }}
+          href="/usage/serverless"
+        >
+          <h3>
+            无限扩展、无限可能，
+            <br className="show-on-mobile" />
+            实现歌单解析，追番列表等功能。
           </h3>
         </Feature>
-        <Feature index={6} id="analyze-card" className='card-with-border' style={{
-          backgroundSize: 720,
-          backgroundRepeat: 'no-repeat',
-          minHeight: 288,
-          backgroundImage: 'url(/analyze-dashboard.png)',
-        }}>
+        <Feature
+          index={6}
+          id="analyze-card"
+          className="card-with-border"
+          style={{
+            backgroundSize: 720,
+            backgroundRepeat: 'no-repeat',
+            minHeight: 288,
+            backgroundImage: 'url(/analyze-dashboard.png)',
+          }}
+        >
           <h3>数据统计面板</h3>
-          <p>Mix Space 支持访客统计，<br className="show-on-mobile"/>您可以在后台查看您的 <b>网站访问量</b>，<b>访问来源</b>，<b>访问设备</b>等信息。</p>
+          <p className='mt-2'>
+            Mix Space 支持访客统计，
+            <br className="show-on-mobile" />
+            您可以在后台查看您的 <b>网站访问量</b>，<b>访问来源</b>，
+            <b>访问设备</b>等信息。
+          </p>
         </Feature>
         <Feature index={7}>
           <h3>记录生活点滴</h3>
-          <p>Mix Space 不仅是博客，更是记录生活点滴的个人空间。您可以在 Mix Space 分享您的多彩缤纷的生活。</p>
+          <p className='mt-2'>
+            Mix Space 不仅是博客，更是记录生活点滴的个人空间。您可以在 Mix Space
+            分享您的多彩缤纷的生活。
+          </p>
         </Feature>
         <Feature index={4}>
-          <h3>强大的友链系统，<br />促进你与老友的联系。</h3>
-          <p>Mix Space 的友链系统强大且全面，在后台你可以检测你的老友是否还「健在」<br /> 有了 Mix Space，你的友链一切尽在掌握。</p>
+          <h3>
+            强大的友链系统，
+
+            促进你与老友的联系。
+          </h3>
+          <p className='mt-2'>
+            Mix Space
+            的友链系统强大且全面，在后台你可以检测你的老友是否还「健在」
+            <br /> 有了 Mix Space，你的友链一切尽在掌握。
+          </p>
         </Feature>
-        <Feature index={8} >
+        <Feature index={8}>
           <h3>更多特性...</h3>
-          <p>文件管理 / WebSocket / 友链支持 / 计划任务 / 数据迁移... <strong><i>更多新特性等待您的探索。</i></strong></p>
-          <p className="subtitle"><Link className="!no-underline" href="/docs">拥有你自己的 Mix Space →</Link></p>
+          <p className='mt-2'>
+            文件管理 / WebSocket / 友链支持 / 计划任务 / 数据迁移...{' '}
+            <strong>
+              <i>更多新特性等待您的探索。</i>
+            </strong>
+          </p>
+          <p className="subtitle mt-2">
+            <Link className="!no-underline text-[#238aff]" href="/docs">
+              拥有你自己的 Mix Space →
+            </Link>
+          </p>
         </Feature>
       </Features>
     </div>
+
   </div>
 </div>
