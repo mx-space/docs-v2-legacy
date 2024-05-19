@@ -1,10 +1,15 @@
 import { useState } from 'react';
 import copy from 'copy-to-clipboard';
 
-export function EnvVariableConfig({ variableNames }) {
+export function EnvVariableConfig({ variableNames, format }: { variableNames: { key: string; name: string }[]; format?: "yaml" | "env" }) {
   const [values, setValues] = useState(Array(variableNames.length).fill(''));
 
   const handleCopy = () => {
+    if (format === 'yaml') {
+      const yamlContent = variableNames.map((name, index) => `- ${name.key}: ${values[index]}`).join('\n');
+      copy(yamlContent);
+      return;
+    }
     const envContent = variableNames.map((name, index) => `${name.key}=${values[index]}`).join('\n');
     copy(envContent);
   };
