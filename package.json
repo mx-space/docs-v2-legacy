@@ -1,7 +1,7 @@
 {
-  "name": "mog-docs",
+  "name": "mx-docs",
   "version": "0.0.1",
-  "description": "Mog Documentation for mog.js.org",
+  "description": "MixSpace Documentation for mx-space.js.org",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
