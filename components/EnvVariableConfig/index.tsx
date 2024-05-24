@@ -6,7 +6,7 @@ export function EnvVariableConfig({ variableNames, format }: { variableNames: { 
 
   const handleCopy = () => {
     if (format === 'yaml') {
-      const yamlContent = variableNames.map((name, index) => `- ${name.key}: ${values[index]}`).join('\n');
+      const yamlContent = variableNames.map((name, index) => `- ${name.key}=${values[index]}`).join('\n');
       copy(yamlContent);
       return;
     }
