@@ -57,14 +57,14 @@ pnpm bundle
   template={`const { cpus } = require('os')
 const { execSync } = require('child_process')
 const nodePath = execSync(\`npm root --quiet -g\`, { encoding: 'utf-8' }).split(
-  '\n',
+  '\\n',
 )[0]
 const cpuLen = cpus().length
 module.exports = {
   apps: [
     {
       name: 'mx-server',
-      script: 'out/index.js',
+      script: './out/index.js',
       autorestart: true,
       exec_mode: 'cluster',
       watch: false,
@@ -79,13 +79,13 @@ module.exports = {
       },
     },
   ],
-}  
+}
 `}
 />
 
 ### 4. 启动
 
-1. 进入 `./apps/core/out`，创建一个 `ecosystem.config.js` 文件
+1. 进入 `./apps/core`，修改 `ecosystem.config.js` 文件
 2. 将上方复制的内容黏贴进去，然后执行以下命令启动服务
 
 ```bash
@@ -125,8 +125,6 @@ setEnvValues(updatedEnvValues);
 const handleCopyToClipboard = () => {
 copy(updatedEnvTemplate);
 };
-
-useEffect(() => {
 const updatedTemplate = nowTemplate.replace(
 /args:\s*'([^']*)'/,
 `args: '${selectedArgs.join(' ')}'`
@@ -139,8 +137,8 @@ const updatedEnvTemplate = updatedTemplate.replace(
         .join(', \n        ')}
       }`
 );
-setNowTemplate(updatedEnvTemplate);
-}, [selectedArgs, envValues]);
+
+useEffect(() => setNowTemplate(updatedEnvTemplate), [selectedArgs, envValues]);
 
 return (
 
@@ -247,7 +245,7 @@ return (
 
       <button
           type="button"
-          className="border bg-black w-full text-white px-4 py-2 rounded-lg text-sm transform transition-all duration-300 focus:outline-none hover:bg-gray-700 dark:border-gray-700 dark:text-gray-300 "
+          className="border bg-black w-full px-4 py-2 rounded-lg text-sm transform transition-all duration-300 focus:outline-none hover:text-white hover:bg-gray-700 dark:border-gray-700 dark:text-gray-300 "
           onClick={handleCopyToClipboard}
         >
           复制
