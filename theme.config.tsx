@@ -31,9 +31,7 @@ const logo = (
       }
       span:hover {
         mask-position: 100%;
-        transition:
-          mask-position 1s ease,
-          -webkit-mask-position 1s ease;
+        transition: mask-position 1s ease, -webkit-mask-position 1s ease;
       }
     `}</style>
   </span>
