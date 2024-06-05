@@ -123,6 +123,9 @@ server {
         proxy_pass http://127.0.0.1:2323; 
     }
     ## 后台地址
+    location /proxy {
+        proxy_pass http://127.0.0.1:2333/proxy;
+    }
     location /qaqdmin {
         proxy_pass http://127.0.0.1:2333/proxy/qaqdmin;
     }
