@@ -16,6 +16,7 @@ import { UilSearchAlt } from '@components/Icons/SearchAlt'
 import { UilBitcoin } from '@components/Icons/Bitcoin'
 import { UilHistoryAlt } from '@components/Icons/HistoryAlt'
 import { UilArrowCircleUp } from '@components/Icons/ArrowCircleUp'
+import { UilKeySkeletonAlt } from '@components/Icons/UilKeySkeletonAlt'
 
 <Cards num={3}>
   <Card
@@ -48,6 +49,12 @@ import { UilArrowCircleUp } from '@components/Icons/ArrowCircleUp'
     arrow
     href={'/usage/security'}
     title="Key 加密与安全性"
+  />
+  <Card
+    icon={<UilKeySkeletonAlt />}
+    arrow
+    href={'/usage/oauth'}
+    title="OAuth 2.0"
   />
 </Cards>
 

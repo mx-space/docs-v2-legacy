@@ -10,6 +10,7 @@
   "backup": "备份与回滚",
   "update": "更新 Mix Space",
   "security": "Key 加密与安全性",
+  "oauth": "OAuth 2.0",
   "-- community": {
     "type": "separator",
     "title": "社区使用指南"
