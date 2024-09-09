@@ -34,8 +34,8 @@ import { ToGitHub } from '@components/ToGitHub'
 - （选择 Vercel 部署）已注册 [Vercel](https://vercel.com/) 和 [GitHub](https://github.com/) 账号
 
 <Callout type="warning">
-  自 Core v7 起，已抛弃 Clerk，取而待之的是 GitHub 和 Google 的 OAuth 2.0
-  配置请参考[OAuth 2.0](/usage/oauth)
+  自 Core v7 起，已抛弃 Clerk，取而代之的是 GitHub 和 Google 的 OAuth 2.0，
+  配置步骤请参考[OAuth 2.0](/usage/oauth)
 
   ~~请注意，Shiro 主题的部署教程与初版有所不同，如果你已经部署过 Shiro
   主题，请重新阅读本文档（尤其是填入配置文件环节，配置有所变化），并阅读
@@ -47,15 +47,30 @@ import { ToGitHub } from '@components/ToGitHub'
 import { Steps } from 'nextra/components'
 import Video from '@components/Video'
 
+export function FAQBox({ title, children }) {
+  return (
+    <details
+      className="last-of-type:mb-0 rounded-lg bg-neutral-50 dark:bg-neutral-800 p-2 mt-4"
+    >
+      <summary>
+        <strong className="text-lg">{title}</strong>
+      </summary>
+      <div className="nx-p-2">{children}</div>
+    </details>
+  )
+}
+
 <Steps>
 
-### 打开 Clerk 创建项目 (已弃用)
+<FAQBox title="打开 Clerk 创建项目(已弃用)">
 
 打开 [Clerk 仪表盘](https://dashboard.clerk.com/) 点击 Add application 按钮，填入你的博客名称，并配置信息，点击 Create application 按钮，即可完成配置。
 
 > 请你务必记住你的 Clerk 页面的公钥和私钥，稍后将会用到。
 
 <Video src="https://pan.vinua.cn/f/Mv1Ty/clerk_create_project.mp4" />
+
+</FAQBox>
 
 ### 设置主题配置
 
@@ -314,7 +329,7 @@ import { EnvVariableConfig } from '@components/EnvVariableConfig'
 
 参见 [README 相关部分](https://github.com/Innei/Shiro/blob/main/README.md#whale-运行) 完成对应操作，随后配置[反向代理](/docs/extra#反向代理)。
 
-## Clerk 登录与 Mix Space 后端绑定（已过时）
+<FAQBox title="Clerk 登录与 Mix Space 后端绑定（已过时）">
 
 如果你遇到在 Shiro 登录之后，无法评论遇到 "和主人重名" 的报错，是因为 Clerk 的用户名和 Mix Space 后端的用户名重复了，你需要绑定本系统和 Clerk 的用户。让某个 Clerk 用户具有管理员权限。
 
@@ -340,15 +355,19 @@ Key:
 
 Refer: https://github.com/Innei/Shiro/issues/137
 
+</FAQBox>
+
 ## 完成！
 
 至此，你已完成了 Shiro 主题的部署，你可以访问你的博客了。
 
-## 移除 Edge Config
+<FAQBox title="移除 Edge Config（已过时）">
 
 在后续的 Shiro 更新中，Edge Config 将不再被使用。你可能需要移除 Edge Config，以防止不必要的资源使用。
 
 进入 Vercel 部署此项目的仪表盘，点击上方的 Storage，进入设置页面，点击左侧的 Projects，将链接的项目取消链接，接着点击左侧的 Settings，点击右侧的 Delete Edge Config 按钮，即可完成删除。
+
+</FAQBox>
 
 ## 更新
 

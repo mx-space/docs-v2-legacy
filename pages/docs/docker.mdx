@@ -85,6 +85,12 @@ import { EnvVariableConfig } from '@components/EnvVariableConfig'
 
 ### 启动 Core
 
+<Callout type="warning" emoji="⚠️">
+如果你的服务器在国内，无法拉取镜像或拉取速度过慢可自行使用代理或在 `docker-compose.yml` 里的 image 前添加镜像域名，比如 `docker.1panel.top/innei/mx-server:latest`。
+
+镜像域名可参考 [国内 Docker 服务状态 & 镜像加速监控](https://status.1panel.top/status/docker)
+</Callout>
+
 ```bash
 docker compose up -d
 ```
