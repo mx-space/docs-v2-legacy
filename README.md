@@ -1,4 +1,16 @@
-# Mix Space Documentation
+# Mix Space Documentation v2 [ARCHIVED]
+
+<pre align="center">
+⚠️ This repository is archived. The content is not maintained anymore.
+⚠️ 此存储库已归档。不再维护内容。
+</pre>
+
+<div align="center">
+
+  [🖱️ Click here to go to the latest Documentaion](https://github.com/mx-space/docs)
+  
+</div>
+
 
 ## Contributing 贡献
 
